@@ -56,15 +56,11 @@ function ImageSearch() {
 
   return (
     <div
-      className="search-page pages"
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        margin: '50px 80px',
-      }}
+      className="search-page"
     >
-      <div style={{ minWidth: '350px' }}>
+      <div 
+        className="search-page-next"
+        style={{ minWidth: '350px' }}>
         <h1>Discover Your Style</h1>
         <ImageGenerationForm
           onImageGenerated={handleImageGenerated}

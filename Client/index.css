@@ -111,8 +111,16 @@ body {
 }
 
 .search-page {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 80px;
   text-align: center;
   padding: 20px;
+  background-color: yellowgreen;
+}
+
+.search-page-next {
+  background-color: yellow;
 }
 
 .generatedImg {

@@ -10,7 +10,8 @@ import About from './Pages/About';
 import MyAccount from './Pages/MyAccount';
 import ForYouFeed from './Pages/ForYouFeed';
 import PromptTester from './components/PromptTester';
-
+import ArtPromptTester from './components/ArtPrompTester';
+import GeminiTester from './components/GeminiTester';
 const Routes = () => {
   return (
     <Router>
@@ -26,6 +27,8 @@ const Routes = () => {
         <Route path="/myAccount" component={MyAccount} />
         <Route path="/feed" component={ForYouFeed} />
         <Route path="/prompt-tester" component={PromptTester} />
+        <Route path="/art-tester" component={ArtPromptTester} />
+        <Route path="/gemini-tester" component={GeminiTester} />
         </Switch>
               </div>
     </Router>

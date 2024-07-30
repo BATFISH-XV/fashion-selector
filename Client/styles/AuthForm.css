@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(to bottom, #4A90E2, #E3F2FD);
 }
 
 .auth-form {
@@ -36,7 +35,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  color: #333;
+  color: #6f0000;
 }
 
 .auth-form button {

@@ -2,14 +2,13 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(90deg, #005aa7 0%, #fffde4 100%);
+  background: linear-gradient(to top, #004573 0%, #b1f4cf 100%);
   color: #333;
 }
 
 .main-content {
   padding-top: 64px;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -23,7 +22,7 @@ body {
 .navbar-brand {
   color: #fff;
   font-size: 1.5em;
-}
+} b x
 
 .navbar-buttons .nav-button {
   color: #fff;
@@ -58,7 +57,6 @@ body {
   background-color: #FFFFFF;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  background: linear-gradient(to bottom, #ffffff, #e3f2fd);
 }
 
 .form-container {
@@ -94,7 +92,7 @@ body {
 .form-container button {
   grid-column: span 2;
   padding: 10px 20px;
-  background-color: #1976D2;
+  background-color: #0000003a;
   color: #fff;
   border: none;
   border-radius: 5px;

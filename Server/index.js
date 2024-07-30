@@ -26,6 +26,8 @@ const openaiImageController = require('./Controllers/openaiImageController');
 const bingSearchController = require('./Controllers/bingSearchController');
 const profileController = require('./Controllers/profileController');
 const promptTesterController = require('./Controllers/promptTesterController');
+const artPromptTesterController = require('./Controllers/artPromptTesterController');
+const geminiArtPromptTester = require('./Controllers/geminiArtPromptTester.js');
 
 dotenv.config();
 
@@ -65,6 +67,12 @@ app.post('/api/update-profile', profileController.updateProfile);
 
 // app.post('/api/prompt-tester/generate-image', promptTesterController.generateImage); // Add the new route
 
+// ArtPromptTester Routes
+app.post('/api/generate-art-image', artPromptTesterController.generateArtImage);
+app.post('/api/match-art-service', artPromptTesterController.matchArtService);
+
+app.post('/generate-gemini-image', geminiArtPromptTester.generateArtImage);
+app.post('/match-art-service-gemini', geminiArtPromptTester.matchArtService)
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

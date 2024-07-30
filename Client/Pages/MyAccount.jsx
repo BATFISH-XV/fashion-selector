@@ -21,10 +21,8 @@ const MyAccount = () => {
         value,
       });
 
-      // Fetch updated user data after profile update
       const updatedUser = await fetchUpdatedUserInfo();
       if (updatedUser) {
-        // Update AuthContext with the new user data
         login(updatedUser, session);
       }
     } catch (error) {

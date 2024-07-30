@@ -1,0 +1,98 @@
+.image-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #e3f2fd);
+}
+
+.result-tile {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-tile img {
+  width: 100%;
+  height: auto;
+}
+
+.result-info {
+  padding: 8px;
+  text-align: center;
+}
+
+.result-info h3 {
+  margin: 8px 0;
+}
+
+.result-info p {
+  margin: 4px 0;
+}
+
+.result-info a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.result-info a:hover {
+  text-decoration: underline;
+}
+
+.result-info button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.result-info button:hover {
+  background-color: #0056b3;
+}
+
+.surprise-me-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.gender-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.gender-buttons .MuiButton-root {
+  background-color: #E0E0E0;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.gender-buttons .MuiButton-root.selected {
+  background-color: #1976D2;
+  color: #fff;
+}
+
+.surprise-button {
+  padding: 10px 20px;
+  background-color: #1976D2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.surprise-button:hover {
+  background-color: #1565C0;
+}

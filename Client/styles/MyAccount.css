@@ -5,16 +5,23 @@
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  background-color: #E3F2FD;
+  background: linear-gradient(to bottom, #e3f2fd, #ffffff);
 }
 
 .account-container h1 {
   margin-bottom: 20px;
+  color: #1976D2;
 }
 
 .account-field {
   margin-bottom: 20px;
   text-align: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .account-field div {
@@ -27,19 +34,20 @@
 .account-field input {
   margin-top: 10px;
   padding: 8px;
-  width: 200px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .account-field button {
   margin-top: 10px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   cursor: pointer;
   background-color: #1976D2;
   color: white;
   border: none;
   border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .account-field button:hover {

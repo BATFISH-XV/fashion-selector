@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import AIGenForm from './AI-Gen-Form';
 import AIGenResult from './AI-Gen-Result';
 import MatchedResults from './Matched-Results';
 import SurpriseMe from './SurpriseMe';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
+import '../styles/PromptTester.css'; // Import the CSS file
 
 function PromptTester() {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
   const [currentPrompt, setCurrentPrompt] = useState({});
   const [promptType, setPromptType] = useState('detailed');
   const [bingData, setBingData] = useState('');
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [loadingBing, setLoadingBing] = useState(false);
 
@@ -66,15 +64,26 @@ function PromptTester() {
     setLoading(false);
   };
 
+  const handleGenerateImage = async () => {
+    setLoading(true);
+    try {
+      const promptText = generatePrompt(promptType, currentPrompt);
+      const response = await axios.post('/api/generate-image/test', { promptType, parameters: currentPrompt });
+      handleImageGenerated(response.data.image_url, currentPrompt);
+    } catch (error) {
+      console.error('Error generating image:', error.response ? error.response.data : error.message);
+      setLoading(false);
+    }
+  };
+
   const handleTryAgainClick = async () => {
     setCurrentImageUrl(null);
     setLoading(true);
     try {
-      const promptText = generatePrompt(promptType, currentPrompt);
-      const response = await axios.post('/api/generate-image', { prompt: promptText });
+      const response = await axios.post('/api/generate-image/test', { promptType, parameters: currentPrompt });
       handleImageGenerated(response.data.image_url, currentPrompt);
     } catch (error) {
-      console.error('Error generating new image:', error);
+      console.error('Error generating new image:', error.response ? error.response.data : error.message);
     } finally {
       setLoading(false);
     }
@@ -84,12 +93,10 @@ function PromptTester() {
     setBingData('');
     setLoadingBing(true);
     try {
-      const response = await axios.post('/api/match-service', {
-        imageUrl: currentImageUrl,
-      });
+      const response = await axios.post('/api/match-service', { imageUrl: currentImageUrl });
       setBingData(response.data);
     } catch (error) {
-      console.error('Error searching Bing:', error);
+      console.error('Error searching Bing:', error.response ? error.response.data : error.message);
     } finally {
       setLoadingBing(false);
     }
@@ -101,11 +108,72 @@ function PromptTester() {
     setLoading(true);
     try {
       const promptText = generatePrompt(promptType, randomPrompt);
-      const response = await axios.post('/api/generate-image', { prompt: promptText });
+      const response = await axios.post('/api/generate-image/test', { promptType, parameters: randomPrompt });
       handleImageGenerated(response.data.image_url, randomPrompt);
     } catch (error) {
-      console.error('Error generating new image:', error);
+      console.error('Error generating new image:', error.response ? error.response.data : error.message);
       setLoading(false);
+    }
+  };
+
+  const handlePromptChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentPrompt((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const renderPromptFields = () => {
+    switch (promptType) {
+      case 'detailed':
+        return (
+          <>
+            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
+            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
+            <label>Style: <input name="style" onChange={handlePromptChange} /></label>
+            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
+          </>
+        );
+      case 'mood':
+        return (
+          <>
+            <label>Mood: <input name="mood" onChange={handlePromptChange} /></label>
+            <label>Occasion: <input name="occasion" onChange={handlePromptChange} /></label>
+            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
+            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
+            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
+            <label>Setting: <input name="setting" onChange={handlePromptChange} /></label>
+            <label>Lighting: <input name="lighting" onChange={handlePromptChange} /></label>
+          </>
+        );
+      case 'wearer':
+        return (
+          <>
+            <label>Body Type: <input name="bodyType" onChange={handlePromptChange} /></label>
+            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
+            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
+            <label>Style: <input name="style" onChange={handlePromptChange} /></label>
+            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
+            <label>Background: <input name="background" onChange={handlePromptChange} /></label>
+          </>
+        );
+      case 'trend':
+        return (
+          <>
+            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
+            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
+            <label>Trend: <input name="trend" onChange={handlePromptChange} /></label>
+            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
+            <label>Target Audience: <input name="targetAudience" onChange={handlePromptChange} /></label>
+          </>
+        );
+      default:
+        return null;
     }
   };
 
@@ -114,12 +182,6 @@ function PromptTester() {
       <div className="form-container">
         <h1>Discover Your Style - TEST PAGE</h1>
         <p>This is a test page for generating style images with various prompts.</p>
-        <AIGenForm
-          onImageGenerated={handleImageGenerated}
-          setLoading={setLoading}
-          setCurrentImageUrl={setCurrentImageUrl}
-          currentPrompt={currentPrompt}
-        />
         <div>
           <label htmlFor="promptType">Select Prompt Type: </label>
           <select
@@ -133,6 +195,12 @@ function PromptTester() {
             <option value="trend">Trend</option>
           </select>
         </div>
+        <form>
+          {renderPromptFields()}
+          <button type="button" onClick={handleGenerateImage}>
+            Generate Image
+          </button>
+        </form>
         <SurpriseMe onSurprise={handleSurprise} />
         <br />
         {loading && (
@@ -163,7 +231,7 @@ function PromptTester() {
       {currentPrompt && (
         <div className="prompt-preview">
           <h2>Prompt Preview:</h2>
-          <p>{generatePrompt(promptType, currentPrompt)}</p>
+          <p dangerouslySetInnerHTML={{ __html: generatePrompt(promptType, currentPrompt) }}></p>
         </div>
       )}
     </div>

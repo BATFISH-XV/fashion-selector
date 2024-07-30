@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@mui/material';
-import '../styles/SurpriseMe.css';  // Ensure to import the CSS file
+import '../styles/ResultStyle.css';
 
 const randomizePrompt = (genders) => {
   const maleItems = [

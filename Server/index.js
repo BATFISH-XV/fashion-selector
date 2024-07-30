@@ -25,6 +25,7 @@ const authController = require('./Controllers/authController');
 const openaiImageController = require('./Controllers/openaiImageController');
 const bingSearchController = require('./Controllers/bingSearchController');
 const profileController = require('./Controllers/profileController');
+const promptTesterController = require('./Controllers/promptTesterController');
 
 dotenv.config();
 
@@ -54,10 +55,16 @@ app.post('/api/login', authController.login);
 app.post('/api/generate-image', openaiImageController.ImgGenService);
 app.post('/api/match-service', bingSearchController.matchService);
 
+app.post('/api/generate-image/test', promptTesterController.generateImageTest);
+// app.post('/api/match-service', promptTesterController.matchService);
+
 // ACCOUNT MANAGEMENT
 app.post('/api/upload-avatar', upload.single('avatar'), profileController.uploadAvatar);
 app.get('/api/user-profile/:userId', profileController.getUserProfile);
 app.post('/api/update-profile', profileController.updateProfile);
+
+// app.post('/api/prompt-tester/generate-image', promptTesterController.generateImage); // Add the new route
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

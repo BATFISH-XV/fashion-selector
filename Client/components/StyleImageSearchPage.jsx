@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import AIGenForm from './AI-Gen-Form';
-import AIGenResult from './AI-Gen-Result';;
+import AIGenResult from './AI-Gen-Result';
 import MatchedResults from './Matched-Results';
 import SurpriseMe from './SurpriseMe';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
+import '../styles/ResultStyle.css'; 
 
 function StyleImageSearchPage() {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -47,6 +48,7 @@ function StyleImageSearchPage() {
       const response = await axios.post('/api/match-service', {
         imageUrl: currentImageUrl,
       });
+      console.log(response.data);
       setBingData(response.data);
     } catch (error) {
       console.error('Error searching Bing:', error);

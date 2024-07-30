@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #E3F2FD;
+  background: linear-gradient(to bottom, #4A90E2, #E3F2FD);
 }
 
 .auth-form {

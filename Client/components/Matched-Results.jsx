@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import MatchedResult from './Matched-Result';
+import MatchedResult from './Matched-Result'
 
 function MatchedResults({ bingData }) {
   useEffect(() => {
@@ -11,7 +11,7 @@ function MatchedResults({ bingData }) {
   return (
     <div className="image-results">
       <h2>Similar Images</h2>
-      <div>
+      <div className="results-container">
         {bingData.map((image, index) => (
           <MatchedResult key={index} image={image} />
         ))}

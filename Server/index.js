@@ -71,8 +71,8 @@ app.post('/api/update-profile', profileController.updateProfile);
 app.post('/api/generate-art-image', artPromptTesterController.generateArtImage);
 app.post('/api/match-art-service', artPromptTesterController.matchArtService);
 
-app.post('/generate-gemini-image', geminiArtPromptTester.generateArtImage);
-app.post('/match-art-service-gemini', geminiArtPromptTester.matchArtService)
+app.post('/api/generate-gemini-image', geminiArtPromptTester.generateArtImage);
+app.post('/api/match-art-service-gemini', geminiArtPromptTester.matchArtService)
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

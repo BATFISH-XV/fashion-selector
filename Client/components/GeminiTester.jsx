@@ -39,7 +39,7 @@ function GeminiTester() {
   const handleGenerateImage = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('/generate-gemini-image', { promptDetails });
+      const response = await axios.post('/api/generate-gemini-image', { promptDetails });
       handleImageGenerated(response.data.image_url, promptDetails);
     } catch (error) {
       console.error('Error generating image:', error.response ? error.response.data : error.message);
@@ -52,7 +52,7 @@ function GeminiTester() {
   const handleFindMatchingItemsClick = async () => {
     setLoadingBing(true);
     try {
-      const response = await axios.post('/match-art-service-gemini', { imageUrl: currentImageUrl });
+      const response = await axios.post('/api/match-art-service-gemini', { imageUrl: currentImageUrl });
       setBingData(response.data);
     } catch (error) {
       console.error('Error searching:', error.response ? error.response.data : error.message);

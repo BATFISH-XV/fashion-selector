@@ -21,8 +21,6 @@ const generatePrompt = (details) => {
     Excluded Topics: ${details.excludedTopics}.`;
 };
 
-
-
 artPromptTesterController.generateArtImage = async (req, res, next) => {
   const { promptDetails } = req.body;
 

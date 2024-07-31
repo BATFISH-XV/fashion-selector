@@ -15,8 +15,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth } from '../Auth/AuthContext';
 
-const pagesLoggedOut = ['Login', 'Sign Up', 'About'];
-const pagesLoggedIn = ['Search', 'Feed', 'Favorites'];
+const pagesLoggedOut = ['Login', 'Sign Up', 'About', 'ART'];
+const pagesLoggedIn = ['Search', 'Feed', 'Favorites', 'ART'];
 const settings = ['My Account', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -58,6 +58,9 @@ function ResponsiveAppBar() {
         break;
       case 'About':
         history.push('/about');
+        break;
+      case 'ART':
+        history.push('/art-tester');
         break;
       default:
         console.log('Unknown page:', page);

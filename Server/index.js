@@ -25,9 +25,9 @@ const authController = require('./Controllers/authController');
 const openaiImageController = require('./Controllers/openaiImageController');
 const bingSearchController = require('./Controllers/bingSearchController');
 const profileController = require('./Controllers/profileController');
-const promptTesterController = require('./Controllers/promptTesterController');
-const artPromptTesterController = require('./Controllers/artPromptTesterController');
-const geminiArtPromptTester = require('./Controllers/geminiArtPromptTester.js');
+
+const artPromptTesterController = require('./Controllers/artPromptTesterController.js');
+const favoriteMatch = require('./Controllers/favoriteMatch.js'); // Import matchController
 
 dotenv.config();
 
@@ -57,7 +57,7 @@ app.post('/api/login', authController.login);
 app.post('/api/generate-image', openaiImageController.ImgGenService);
 app.post('/api/match-service', bingSearchController.matchService);
 
-app.post('/api/generate-image/test', promptTesterController.generateImageTest);
+// app.post('/api/generate-image/test', promptTesterController.generateImageTest);
 // app.post('/api/match-service', promptTesterController.matchService);
 
 // ACCOUNT MANAGEMENT
@@ -66,13 +66,19 @@ app.get('/api/user-profile/:userId', profileController.getUserProfile);
 app.post('/api/update-profile', profileController.updateProfile);
 
 // app.post('/api/prompt-tester/generate-image', promptTesterController.generateImage); // Add the new route
+/**
+ * ADDING IN FAVORITE
+ */
+app.post('/api/favorite', favoriteMatch.favoriteMatch);
 
-// ArtPromptTester Routes
+// Route to generate an art image based on prompts
 app.post('/api/generate-art-image', artPromptTesterController.generateArtImage);
+
+// Route to find similar images using Bing's visual search
 app.post('/api/match-art-service', artPromptTesterController.matchArtService);
 
-app.post('/api/generate-gemini-image', geminiArtPromptTester.generateArtImage);
-app.post('/api/match-art-service-gemini', geminiArtPromptTester.matchArtService)
+// Route to add an image to favorites
+app.post('/api/favorite-art-image', favoriteMatch.favoriteMatch);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

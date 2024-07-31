@@ -1,7 +1,13 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, IconButton, Box, Button } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+//st
 
+/**
+ * NEED TO UPDATE W/ THE PULLED INFO
+ * @param {*} param0 
+ * @returns 
+ */
 const FeedPost = ({ post }) => {
   return (
     <Card className="feed-post" sx={{ display: 'flex', mb: 2 }}>

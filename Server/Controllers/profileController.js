@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const supabase = require('../supabase');
+const uuid = require('uuid');
 
 const profileController = {};
 
@@ -16,6 +17,7 @@ profileController.uploadAvatar = async (req, res) => {
   const file = req.file;
   const fileName = `${uuidv4()}-${file.originalname}`;
 
+  
   try {
     const { error: uploadError, data: uploadData } = await supabase.storage
       .from('User-Avatars')
@@ -49,7 +51,6 @@ profileController.uploadAvatar = async (req, res) => {
 
 profileController.getUserProfile = async (req, res) => {
   const { userId } = req.params;
-
   try {
     const { data, error } = await supabase
       .from('profiles')

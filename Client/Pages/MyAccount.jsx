@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../styles/MyAccount.css';
 
 const MyAccount = () => {
-  const { user, session, login, loading } = useAuth();
+  const { user, session, login, loading, avatarUrl} = useAuth();
   const [first_name, setFirstName] = useState(user?.user_metadata?.first_name || '');
   const [last_name, setLastName] = useState(user?.user_metadata?.last_name || '');
   const [email, setEmail] = useState(user?.user_metadata?.email || '');
@@ -78,12 +78,23 @@ const MyAccount = () => {
   };
 
   if (loading) {
-    return null; // or a loading spinner
+    return null; 
   }
 
   return (
     <div className="account-container">
       <h1>My Account</h1>
+      <div className="avatar-section">
+        {avatarUrl ? (
+          <img src={avatarUrl} alt="Avatar" className="avatar-img" />
+        ) : (
+          <p>No avatar uploaded</p>
+        )}
+        <div className="avatar-upload">
+          <input type="file" onChange={handleAvatarChange} />
+          <button type="button" onClick={handleAvatarUpload}>Upload Avatar</button>
+        </div>
+      </div>
       <div className="account-field">
         <div>
           <span>First Name: {first_name}</span>
@@ -143,13 +154,6 @@ const MyAccount = () => {
             onBlur={() => handleFieldUpdate('password', password)}
           />
         )}
-      </div>
-      <div className="account-field">
-        <div>
-          <span>Avatar:</span>
-          <input type="file" onChange={handleAvatarChange} />
-          <button type="button" onClick={handleAvatarUpload}>Upload Avatar</button>
-        </div>
       </div>
     </div>
   );

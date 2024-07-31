@@ -23,10 +23,12 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
     e.preventDefault();
     setCurrentImageUrl(null);
     setLoading(true);
+    console.log('Submitting form with:', { item, color, style, features, additional });
 
     try {
       const response = await axios.post('/api/generate-image', { item, color, style, features, additional });
       onImageGenerated(response.data.image_url, { item, color, style, features, additional });
+      console.log('Image generated:', response.data.image_url);
     } catch (error) {
       console.error('Error generating image:', error);
     } finally {
@@ -45,6 +47,7 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
         />
         <SpeechRecognition key="item" formId="item" setter={setItem} />
       </label>
+      <br></br>
 
       <label>
         Color

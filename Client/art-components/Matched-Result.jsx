@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import '../styles/ResultStyle.css';
+// import '../styles/ResultStyle.css';
 
 function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
   console.log(`Rendering image: ${image.name} with URL: ${image.contentUrl}`);

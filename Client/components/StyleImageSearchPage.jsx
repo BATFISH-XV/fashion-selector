@@ -53,9 +53,14 @@ function StyleImageSearchPage({ userId }) {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h1>Discover Your Style</h1>
+  <>
+      <div className="spacer"></div>
+      <div className="containerOuter">
+        <div className="container">
+          <div className="form-container">
+            <p className="discover">Discover your style</ p>
+            <h3 className="fashion">Fashion, Art, Furniture</h3>
+        <hr></hr>
         <AIGenForm
           onImageGenerated={handleImageGenerated}
           setLoading={setLoading}
@@ -63,8 +68,10 @@ function StyleImageSearchPage({ userId }) {
           currentPrompt={currentPrompt}
         />
         <br />
+        </div>
+        <div className="rightContainer">
         {loading && (
-          <div style={{ textAlign: 'center' }}>
+          <div className="dallEProgress" style={{ textAlign: 'center' }}>
             <CircularProgress />
             <p>Finding Your Style...</p>
           </div>
@@ -76,7 +83,6 @@ function StyleImageSearchPage({ userId }) {
             onFindMatchingItemsClick={handleFindMatchingItemsClick}
           />
         )}
-      </div>
       {bingData ? (
         <MatchedResults 
           bingData={bingData} 
@@ -85,7 +91,7 @@ function StyleImageSearchPage({ userId }) {
           userId={userId}
         />
       ) : (
-        <div style={{ width: '500px' }}></div>
+      <div></div>
       )}
       {loadingBing && (
         <div style={{ textAlign: 'center' }}>
@@ -94,6 +100,10 @@ function StyleImageSearchPage({ userId }) {
         </div>
       )}
     </div>
+    </div>
+    </div>
+    <div div className ="sapcerBottom"></div>
+    </>
   );
 }
 

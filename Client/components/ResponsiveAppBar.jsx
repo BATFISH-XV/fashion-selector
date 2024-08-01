@@ -11,11 +11,12 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth } from '../Auth/AuthContext';
 
-const pagesLoggedOut = ['Login', 'Sign Up', 'About', '*ART-PROMPT-TESTER*', '*PROMP-TEST-VARIANTS*'];
+const pagesLoggedOut = ['Login', 'Sign Up', 'About', '**ART-PROMPT-TESTER*', '*PROMP-TEST-VARIANTS*'];
 const pagesLoggedIn = ['Search', 'Feed', 'Favorites', 'ART', '*ART-PROMPT-TESTER*', '*PROMP-TEST-VARIANTS*'];
 const settings = ['My Account', 'Logout'];
 

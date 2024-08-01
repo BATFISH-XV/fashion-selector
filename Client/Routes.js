@@ -12,7 +12,6 @@ import MyAccount from './Pages/MyAccount';
 import ForYouFeed from './Pages/ForYouFeed';
 import ArtPromptTester from './art-components/ArtPrompTester';
 import Favorites from './Pages/Favorites';
-import PrompTester from './components/PromptTester';
 import PromptTester from './components/PromptTester';
 const Routes = () => {
   const { user } = useAuth();

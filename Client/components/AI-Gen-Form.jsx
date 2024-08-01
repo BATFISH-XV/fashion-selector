@@ -37,9 +37,11 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
+    <form onSubmit={handleSubmit} className="form-container2">
+      
       <label>
         Item
+        <br></br>
         <input
           type="text"
           value={item}
@@ -49,8 +51,10 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
       </label>
       <br></br>
 
+      
       <label>
         Color
+        <br></br>
         <input
           type="text"
           value={color}
@@ -58,9 +62,12 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
         />
         <SpeechRecognition key="color" formId="color" setter={setColor} />
       </label>
+      <br></br>
 
+      
       <label>
         Style
+      <br></br>
         <input
           type="text"
           value={style}
@@ -68,9 +75,12 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
         />
         <SpeechRecognition key="style" formId="style" setter={setStyle} />
       </label>
+      <br></br>
 
+      
       <label>
         Features
+        <br></br>
         <input
           type="text"
           value={features}
@@ -78,9 +88,12 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
         />
         <SpeechRecognition key="features" formId="features" setter={setFeatures} />
       </label>
+      <br></br>
 
+      
       <label>
         Additional info
+        <br></br>
         <input
           type="text"
           value={additional}
@@ -88,8 +101,9 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPr
         />
         <SpeechRecognition key="additional" formId="additional" setter={setAdditional} />
       </label>
+      <br></br>
 
-      <button type="submit">Generate Image</button>
+      <button className="generateImage" type="submit">Generate Image</button>
     </form>
   );
 }

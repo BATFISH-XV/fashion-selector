@@ -1,20 +1,23 @@
 body {
+  height: 100%;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to top, #004573 0%, #b1f4cf 100%);
-  color: #333;
+  background-image: linear-gradient(#2D6C8F, #999999);
+  color: #999999;
+  background-attachment: fixed;
 }
 
-.main-content {
-  padding-top: 64px;
-}
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #1976D2;
   padding: 10px 20px;
+
+  position: fixed;
+  /* Fixed position so nav bar stays @ top of page */
+
   width: 100%;
   z-index: 1000;
 }
@@ -22,7 +25,7 @@ body {
 .navbar-brand {
   color: #fff;
   font-size: 1.5em;
-} b x
+}
 
 .navbar-buttons .nav-button {
   color: #fff;
@@ -42,124 +45,220 @@ body {
   padding: 20px;
 }
 
-.search-page {
+.filter {
+  margin: 20px 0;
+}
+
+.generatedImg {
+  max-width: 200px;
+  max-height: 200px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.imgBtnContainer {
+  /* background-color: blue; */
+  display: flex;
+  align-items: flex-end;
+}
+
+.dallEProgress {
+  margin-top: 10px;
+}
+
+.login-status {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #1976D2;
+  padding: 5px;
   text-align: center;
-  padding: 100px 20px 20px;
+  z-index: 1000;
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+.search-page .loading-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.spacer {
+  height: 85px;
+}
+
+.spacerBottom {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+}
+
+.containerOuter {
+  display: flex;
+  height: 83vh;
 }
 
 .container {
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 10px;
 }
 
 .form-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 260px;
+  max-height: 400px;
+}
+
+.form-container2 {
+  /* background-color: red; */
+  border-radius: 10px;
+  max-height: 400px;
+}
+
+.rightContainer {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
 }
 
-.form-container form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  width: 100%;
-  max-width: 400px;
+.discover {
+  margin-left: 10px;
+  margin-bottom: 5px;
 }
 
-.form-container label {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.form-container input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-container button {
-  grid-column: span 2;
-  padding: 10px 20px;
-  background-color: #0000003a;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.form-container button:hover {
-  background-color: #1565C0;
+.fashion {
+  margin-left: 10px;
+  margin-top: 0px;
+  color: black
 }
 
 .generated-image {
+  display: flex;
   text-align: center;
-  flex: 2;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.generated-image img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 20px;
+.bingContainer {
+  flex-grow: 1;
+  display: flex;
+  width: 95%;
+  justify-content: center;
 }
 
 .image-results {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 600px;
-  overflow-y: auto;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  max-width: 80vw;
   padding: 10px;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #F1F8E9;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .image-results img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
+  height: 100px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.searchResults {
+  color: white;
+  text-align: left;
+}
+
+.matchedResult {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.star {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  background-color: #2C2C2C;
+  color: #F5F5F5;
+  border-radius: 5px;
+}
+
+.speechButton {
+  margin-right: 0px;
+  font-size: x-small;
+  height: 22px;
+}
+
+.generateImage {
+  margin-top: 20px;
+  margin-left: 104px
+}
+
+.image-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.image-results::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.image-results::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.image-results::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+  color: #2D6C8F;
+}
+
+
+/* Adding centering for the the CircularProgress component */
 .center-loading {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+
 }
 
-.speechButton {
-  margin-left: 10px;
-  padding: 8px;
-  background-color: #1976D2;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.speechButton:hover {
-  background-color: #1565C0;
-}
-
-button {
-  margin: 5px;
-}
 
 .surprise-button {
   margin-top: 20px;
@@ -186,16 +285,4 @@ button {
 .gender-toggle label {
   margin-right: 10px;
   font-size: 16px;
-}
-
-.login-status {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #1976D2;
-  padding: 5px;
-  text-align: center;
-  z-index: 1000;
-  font-size: 14px;
-  color: #f0f0f0;
 }

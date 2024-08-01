@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import MatchedResult from './Matched-Result';
+import '../index.css'; // Import your global CSS
 
 function MatchedResults({ bingData, currentImageUrl, currentPrompt, userId }) {
   useEffect(() => {
@@ -12,20 +13,22 @@ function MatchedResults({ bingData, currentImageUrl, currentPrompt, userId }) {
   }, [bingData, currentImageUrl, currentPrompt, userId]);
 
   return (
-    <div className="image-results">
-      <h2>Similar Images</h2>
-      <div className="results-container">
-        {bingData.map((image, index) => (
-          <MatchedResult 
-            key={index} 
-            image={image} 
-            currentImageUrl={currentImageUrl} 
-            currentPrompt={currentPrompt} 
-            userId={userId}
-          />
-        ))}
+    <>
+      <h2 className='searchResults'>Search results</h2>
+      <div className="bingContainer">
+        <div className="image-results">
+          {bingData.map((image, index) => (
+            <MatchedResult 
+              key={index} 
+              image={image} 
+              currentImageUrl={currentImageUrl} 
+              currentPrompt={currentPrompt} 
+              userId={userId}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

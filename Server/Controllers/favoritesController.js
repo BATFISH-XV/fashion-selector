@@ -1,4 +1,6 @@
 const supabase = require('../supabase');
+const { v4: uuidv4 } = require('uuid');
+const axios = require('axios');
 
 const favoritesController = {};
 
@@ -6,20 +8,31 @@ favoritesController.favoriteMatch = async (req, res) => {
   const { userId, prompt, imageUrl, photoUrl, url, name, title, source } = req.body;
   console.log('favoriteMatch request body:', req.body);
 
-  console.log('Length of imageUrl:', imageUrl.length);
-  console.log('Length of photoUrl:', photoUrl.length);
-  console.log('Length of url:', url.length);
-  console.log('Length of name:', name.length);
-  console.log('Length of title:', title ? title.length : 0); // title may be undefined
-  console.log('Length of source:', source.length);
-  console.log('userId:', userId);
-
   try {
+    // Download the AI image
+    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+    const buffer = Buffer.from(response.data, 'binary');
+    const fileName = `${uuidv4()}.jpg`;
+
+    // Upload the AI image to Supabase Storage
+    const { data: storageData, error: storageError } = await supabase
+      .storage
+      .from('ai-images')
+      .upload(fileName, buffer, {
+        contentType: 'image/jpeg',
+      });
+
+    if (storageError) {
+      throw storageError;
+    }
+
+    const uploadedImageUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/ai-images/${fileName}`;
+
     // Check if image exists
     let { data: existingImage, error: imageError } = await supabase
       .from('ai_images')
       .select('image_id')
-      .eq('image_url', imageUrl)
+      .eq('image_url', uploadedImageUrl)
       .single();
 
     if (imageError && imageError.code !== 'PGRST116') {  // PGRST116 means no rows found
@@ -32,7 +45,7 @@ favoritesController.favoriteMatch = async (req, res) => {
       // Insert new image
       const { data: newImage, error: insertImageError } = await supabase
         .from('ai_images')
-        .insert([{ prompt, image_url: imageUrl, is_generated: true }])
+        .insert([{ prompt, image_url: uploadedImageUrl, is_generated: true }])
         .select('image_id')
         .single();
 
@@ -77,6 +90,7 @@ favoritesController.favoriteMatch = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
 favoritesController.getUserFavorites = async (req, res) => {
   const { userId } = req.body;
 
@@ -84,6 +98,7 @@ favoritesController.getUserFavorites = async (req, res) => {
     const { data: favorites, error } = await supabase
       .from('favorites')
       .select(`
+        user_id,
         match_id,
         matches (
           photo_url,
@@ -103,17 +118,29 @@ favoritesController.getUserFavorites = async (req, res) => {
       throw error;
     }
 
-    const formattedFavorites = favorites.map(favorite => ({
-      userId: favorite.user_id,
-      prompt: favorite.matches.ai_images.prompt,
-      imageUrl: favorite.matches.ai_images.image_url,
-      photoUrl: favorite.matches.photo_url,
-      url: favorite.matches.url,
-      name: favorite.matches.name,
-      title: favorite.matches.title,
-      source: favorite.matches.source,
-      matchId: favorite.match_id
-    }));
+    // Grouping the matches by image_url
+    const groupedFavorites = favorites.reduce((acc, favorite) => {
+      const imageUrl = favorite.matches.ai_images.image_url;
+      if (!acc[imageUrl]) {
+        acc[imageUrl] = {
+          userId: favorite.user_id,
+          prompt: favorite.matches.ai_images.prompt,
+          imageUrl,
+          matchedImages: [],
+        };
+      }
+      acc[imageUrl].matchedImages.push({
+        photoUrl: favorite.matches.photo_url,
+        url: favorite.matches.url,
+        name: favorite.matches.name,
+        title: favorite.matches.title,
+        source: favorite.matches.source,
+        matchId: favorite.match_id
+      });
+      return acc;
+    }, {});
+
+    const formattedFavorites = Object.values(groupedFavorites);
 
     res.status(200).json(formattedFavorites);
   } catch (error) {

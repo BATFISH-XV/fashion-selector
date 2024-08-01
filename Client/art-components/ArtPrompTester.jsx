@@ -4,11 +4,9 @@ import axios from 'axios';
 import ArtPromptForm from './AI-Gen-Form';
 import AIGenResult from './AI-Gen-Result';
 import MatchedResults from './Matched-Results';
-import MatchedResult from './Matched-Result';
-
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import '../styles/PromptTester.css';
+import '../index.css'; 
 
 function ArtPromptTester({ userID }) {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -44,8 +42,8 @@ function ArtPromptTester({ userID }) {
 
   const handleFindMatchingItemsClick = async () => {
     setLoadingBing(true);
-    try { 
-      const response = await axios.post('/api/match-art-service', { imageUrl: currentImageUrl});
+    try {
+      const response = await axios.post('/api/match-art-service', { imageUrl: currentImageUrl });
       setBingData(response.data);
     } catch (error) {
       console.error('Error searching Bing:', error.response ? error.response.data : error.message);
@@ -67,9 +65,9 @@ function ArtPromptTester({ userID }) {
   };
 
   return (
-    <div className="container">
+    <div className="search-page">
       <div className="form-container">
-        <h1>Discover Your Art - ArtPromptTester</h1>
+        <h1>Discover Your Art</h1>
         <p>Find art for your house based on various parameters.</p>
         <ArtPromptForm
           onImageGenerated={handleImageGenerated}
@@ -91,7 +89,7 @@ function ArtPromptTester({ userID }) {
               onTryAgainClick={handleGenerateImage}
               onFindMatchingItemsClick={handleFindMatchingItemsClick}
             />
-            <button type="button" onClick={handleFavorite}>
+            <button className="generateImage" type="button" onClick={handleFavorite}>
               Favorite This Image
             </button>
           </>

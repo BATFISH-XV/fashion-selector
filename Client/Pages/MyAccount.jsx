@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../Auth/AuthContext';
 import axios from 'axios';
 import '../styles/MyAccount.css';
 
 const MyAccount = () => {
+
   const { user, session, login, loading, avatarUrl} = useAuth();
   const [first_name, setFirstName] = useState(user?.user_metadata?.first_name || '');
   const [last_name, setLastName] = useState(user?.user_metadata?.last_name || '');
   const [email, setEmail] = useState(user?.user_metadata?.email || '');
   const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState(null);
-
   const [editField, setEditField] = useState(null);
+
+    useEffect(() => {
+    if (user) {
+      setFirstName(user.user_metadata?.first_name || '');
+      setLastName(user.user_metadata?.last_name || '');
+      setEmail(user.user_metadata?.email || '');
+    }
+  }, [user]);
 
   const handleFieldUpdate = async (field, value) => {
     try {
@@ -56,29 +64,36 @@ const MyAccount = () => {
     }
   };
 
-  const handleAvatarUpload = async () => {
-    const formData = new FormData();
-    formData.append('avatar', avatar);
-    formData.append('userId', user.id); // Include user ID in the form data
+const handleAvatarUpload = async () => {
+  const formData = new FormData();
+  formData.append('avatar', avatar);
+  formData.append('userId', user.id);
 
-    try {
-      await axios.post('/api/upload-avatar', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+  try {
+    await axios.post('/api/upload-avatar', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-      const updatedUser = await fetchUpdatedUserInfo();
-      if (updatedUser) {
-        login(updatedUser, session);
-      }
-    } catch (error) {
-      console.error('Error uploading avatar:', error);
+    const updatedUser = await fetchUpdatedUserInfo();
+    if (updatedUser) {
+      login(updatedUser, session);
+      setAvatarUrl(updatedUser.avatar_url); 
+
     }
-  };
+  } catch (error) {
+    console.error('Error uploading avatar:', error);
+  }
+};
+
 
   if (loading) {
     return null; 
+  }
+
+   if (!user) {
+    return <div>Please log in</div>;
   }
 
   return (

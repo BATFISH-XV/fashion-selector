@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
 const supabase = require('../supabase');
-const uuid = require('uuid');
 
 const profileController = {};
 
@@ -13,11 +12,16 @@ const profileController = {};
  * @param {*} res http response with URL for success or error
  */
 profileController.uploadAvatar = async (req, res) => {
-  const { userId } = req.body; 
+  const { userId } = req.body;
   const file = req.file;
-  const fileName = `${uuidv4()}-${file.originalname}`;
 
-  
+  if (!file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+
+  const fileName = `${uuidv4()}-${file.originalname}`;
+  console.log('File received:', file);
+
   try {
     const { error: uploadError, data: uploadData } = await supabase.storage
       .from('User-Avatars')
@@ -32,7 +36,6 @@ profileController.uploadAvatar = async (req, res) => {
 
     const avatarUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/User-Avatars/${fileName}`;
 
-    // Update the user's profile with the new avatar URL
     const { error: updateError } = await supabase
       .from('profiles')
       .update({ avatar_url: avatarUrl })
@@ -77,10 +80,6 @@ profileController.updateProfile = async (req, res) => {
   }
 
   try {
-    console.log('Told to update userId: ', userId);
-    console.log('Told to update field: ', field);
-    console.log('Told to update value: ', value);
-
     const updateData = {};
     updateData[field] = value;
 

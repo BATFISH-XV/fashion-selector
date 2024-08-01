@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-// Page container
 const PageContainer = styled.div`
   max-width: 1025px;
   padding: 50px;
   margin-top: 50px;
 `;
 
-// Container for each favorites row
 const FavoritesRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -20,24 +18,31 @@ const FavoritesRow = styled.div`
   margin: 70px 0;
 `;
 
-// AI Image container
 const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 200px;
   width: 400px;
   border-style: solid;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 `;
 
-// AI image placeholder
 const Placeholder = styled.img`
   width: 90%;
   height: 90%;
   background: #f0f0f0;
 `;
 
-// Cards container
+const PromptText = styled.div`
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+`;
+
 const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -45,7 +50,6 @@ const CardContainer = styled.div`
   width: 600px;
 `;
 
-// Single card container
 const Card = styled.div`
   height: 165px;
   width: 165px;
@@ -59,20 +63,17 @@ const Card = styled.div`
   border-radius: 2rem;
 `;
 
-// Card image
 const Image = styled.img`
   height: 100px;
   width: 100px;
   position: relative;
 `;
 
-// Label div container
 const Label = styled.div`
   margin-top: 15px;
   text-align: center;
 `;
 
-// Actual label styling
 const RetailerLabel = styled(Label)`
   color: #333;
   font-weight: bold;
@@ -114,19 +115,26 @@ const Favorites = ({ userId }) => {
             <ImageContainer>
               <Placeholder
                 src={favorite.imageUrl || 'https://via.placeholder.com/400x200'}
-                onError={(e) => e.target.src = 'https://via.placeholder.com/400x200'}
+                onError={(e) => (e.target.src = 'https://via.placeholder.com/400x200')}
               />
+              <PromptText>{favorite.prompt}</PromptText>
             </ImageContainer>
             <CardContainer>
-              <Card>
-                <Image
-                  src={favorite.photoUrl || 'https://via.placeholder.com/30'}
-                  alt="placeholder"
-                  onError={(e) => e.target.src = 'https://via.placeholder.com/30'}
-                />
-                <RetailerLabel>{favorite.name}</RetailerLabel>
-                <Label>{favorite.title}</Label>
-              </Card>
+              {favorite.matchedImages && favorite.matchedImages.length > 0 ? (
+                favorite.matchedImages.map((image, idx) => (
+                  <Card key={idx}>
+                    <Image
+                      src={image.photoUrl || 'https://via.placeholder.com/100'}
+                      alt="placeholder"
+                      onError={(e) => (e.target.src = 'https://via.placeholder.com/100')}
+                    />
+                    <RetailerLabel>{image.name}</RetailerLabel>
+                    <Label>{image.title}</Label>
+                  </Card>
+                ))
+              ) : (
+                <div>No matched images found</div>
+              )}
             </CardContainer>
           </FavoritesRow>
         ))

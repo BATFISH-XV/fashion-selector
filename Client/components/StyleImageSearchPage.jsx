@@ -102,7 +102,7 @@ function StyleImageSearchPage({ userId }) {
     </div>
     </div>
     </div>
-    <div div className ="sapcerBottom"></div>
+    <div className ="sapcerBottom"></div>
     </>
   );
 }

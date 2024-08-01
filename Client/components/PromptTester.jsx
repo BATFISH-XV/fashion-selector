@@ -5,7 +5,6 @@ import MatchedResults from './Matched-Results';
 import SurpriseMe from './SurpriseMe';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import '../styles/PromptTester.css';
 
 function PromptTester() {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);

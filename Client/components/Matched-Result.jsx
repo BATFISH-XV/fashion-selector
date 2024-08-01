@@ -10,12 +10,7 @@ function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
 
   console.log(`Rendering image: ${image.name} with URL: ${image.contentUrl}`);
 
-  let itemName;
-  if (image.name.length > 50) {
-    itemName = image.name.slice(0, 50).concat('...');
-  } else {
-    itemName = image.name;
-  }
+  let itemName = image.name.length > 50 ? `${image.name.slice(0, 50)}...` : image.name;
 
   const handleAddToFavorites = async () => {
     console.log('Adding to favorites:', { userId, currentPrompt, currentImageUrl, image });
@@ -31,11 +26,12 @@ function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
         title: image.title,
         source: 'Bing'
       });
-      alert('Added to favorites');
       setFill('gold');
       setPath(filledStarPath);
+      // Optionally display a success message here
     } catch (error) {
       console.error('Error adding to favorites:', error);
+      // Optionally display an error message here
     }
   };
 
@@ -52,9 +48,10 @@ function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
     <div className='matchedResult'>
       <a href={image.hostPageUrl} target="_blank" rel="noopener noreferrer">
         <img src={image.contentUrl} alt={image.name} />
-        <br></br>{itemName}
+        <br />
+        {itemName}
       </a>
-      <br></br>
+      <br />
       <div className="star">
         <svg 
           onClick={handleClick}
@@ -63,7 +60,10 @@ function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
           height="25" 
           fill={fill} 
           className="bi bi-star" 
-          viewBox="0 0 16 16">
+          viewBox="0 0 16 16"
+          role="button"
+          aria-label={fill === 'currentColor' ? 'Add to favorites' : 'Remove from favorites'}
+        >
           <path d={path} />
         </svg>
       </div>

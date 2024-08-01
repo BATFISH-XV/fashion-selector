@@ -20,12 +20,12 @@ const FeedPost = ({ post }) => {
           <Typography variant="body2" color="text.secondary" component="p">
             {post.source}
           </Typography>
-          <Typography variant="body2" color="text.primary" component="p" sx={{ mt: 1 }}>
-            URL: <a href={post.url} target="_blank" rel="noopener noreferrer">{post.url}</a>
-          </Typography>
         </CardContent>
         <Box className="post-info">
-          <Button variant="outlined" onClick={() => alert(`Learn more about ${post.title}`)}>
+          <Button
+            variant="outlined"
+            onClick={() => window.open(post.url, '_blank', 'noopener noreferrer')}
+          >
             Learn More
           </Button>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

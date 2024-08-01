@@ -11,8 +11,9 @@ import About from './Pages/About';
 import MyAccount from './Pages/MyAccount';
 import ForYouFeed from './Pages/ForYouFeed';
 import ArtPromptTester from './art-components/ArtPrompTester';
-
-
+import Favorites from './Pages/Favorites';
+import PrompTester from './components/PromptTester';
+import PromptTester from './components/PromptTester';
 const Routes = () => {
   const { user } = useAuth();
 
@@ -29,7 +30,10 @@ const Routes = () => {
           <Route path="/about" component={About} />
           <Route path="/myAccount" component={MyAccount} />
           <Route path="/feed" component={ForYouFeed} />
+          <Route path="/prompt-tester" component={PromptTester} />
           <Route path="/art-tester" render={(props) => <ArtPromptTester {...props} userId={user?.id} />} />
+          <Route path="/favorites" render={(props) => <Favorites {...props} userId={user?.id} />} />
+           <Route path="/myAccount" component={MyAccount} />
 
         </Switch>
       </div>

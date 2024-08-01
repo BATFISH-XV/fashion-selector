@@ -1,9 +1,10 @@
 const supabase = require('../supabase');
 
-const favoriteMatch = async (req, res) => {
+const favoritesController = {};
+
+favoritesController.favoriteMatch = async (req, res) => {
   const { userId, prompt, imageUrl, photoUrl, url, name, title, source } = req.body;
   console.log('favoriteMatch request body:', req.body);
-
 
   console.log('Length of imageUrl:', imageUrl.length);
   console.log('Length of photoUrl:', photoUrl.length);
@@ -11,8 +12,6 @@ const favoriteMatch = async (req, res) => {
   console.log('Length of name:', name.length);
   console.log('Length of title:', title ? title.length : 0); // title may be undefined
   console.log('Length of source:', source.length);
-
- 
   console.log('userId:', userId);
 
   try {
@@ -78,7 +77,49 @@ const favoriteMatch = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+favoritesController.getUserFavorites = async (req, res) => {
+  const { userId } = req.body;
 
-module.exports = {
-  favoriteMatch,
+  try {
+    const { data: favorites, error } = await supabase
+      .from('favorites')
+      .select(`
+        match_id,
+        matches (
+          photo_url,
+          url,
+          name,
+          title,
+          source,
+          ai_images (
+            image_url,
+            prompt
+          )
+        )
+      `)
+      .eq('user_id', userId);
+
+    if (error) {
+      throw error;
+    }
+
+    const formattedFavorites = favorites.map(favorite => ({
+      userId: favorite.user_id,
+      prompt: favorite.matches.ai_images.prompt,
+      imageUrl: favorite.matches.ai_images.image_url,
+      photoUrl: favorite.matches.photo_url,
+      url: favorite.matches.url,
+      name: favorite.matches.name,
+      title: favorite.matches.title,
+      source: favorite.matches.source,
+      matchId: favorite.match_id
+    }));
+
+    res.status(200).json(formattedFavorites);
+  } catch (error) {
+    console.error('Error in getUserFavorites:', error);
+    res.status(500).send('Server error');
+  }
 };
+
+module.exports = favoritesController;

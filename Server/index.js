@@ -27,7 +27,8 @@ const bingSearchController = require('./Controllers/bingSearchController');
 const profileController = require('./Controllers/profileController');
 
 const artPromptTesterController = require('./Controllers/artPromptTesterController.js');
-const favoriteMatch = require('./Controllers/favoriteMatch.js'); // Import matchController
+const favoritesController = require('./Controllers/favoritesController.js');
+const feedController = require('./Controllers/feedController.js');
 
 dotenv.config();
 
@@ -65,20 +66,19 @@ app.post('/api/upload-avatar', upload.single('avatar'), profileController.upload
 app.get('/api/user-profile/:userId', profileController.getUserProfile);
 app.post('/api/update-profile', profileController.updateProfile);
 
-// app.post('/api/prompt-tester/generate-image', promptTesterController.generateImage); // Add the new route
-/**
- * ADDING IN FAVORITE
- */
-app.post('/api/favorite', favoriteMatch.favoriteMatch);
 
-// Route to generate an art image based on prompts
+app.post('/api/favorite', favoritesController.favoriteMatch);
+app.post('/api/favorites/', favoritesController.getUserFavorites);
+
+
+app.get('/api/matches', feedController.getAllMatches);
+
+
 app.post('/api/generate-art-image', artPromptTesterController.generateArtImage);
-
 // Route to find similar images using Bing's visual search
 app.post('/api/match-art-service', artPromptTesterController.matchArtService);
-
 // Route to add an image to favorites
-app.post('/api/favorite-art-image', favoriteMatch.favoriteMatch);
+app.post('/api/favorite-art-image', favoritesController.favoriteMatch);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

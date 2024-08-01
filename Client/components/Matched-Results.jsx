@@ -8,7 +8,20 @@ function MatchedResults({ bingData }) {
     console.log('bingData:', bingData);
   }, [bingData]);
 
-  return (
+  if (bingData[0] === undefined) {
+    return (
+      <>
+      <h2 className='searchResults'>Search results</h2>
+      <div className="bingContainer">
+        <div className="image-results">
+          <p>No matches found - try again with a new image</p>
+        </div>
+      </div>
+    </>
+    )
+  }
+
+  else return (
     <>
       <h2 className='searchResults'>Search results</h2>
       <div className="bingContainer">

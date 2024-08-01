@@ -62,7 +62,7 @@ function ResponsiveAppBar() {
       case '*ART-PROMPT-TESTER*':
         history.push('/art-tester');
         break;
-      case 'PROMP-TEST-VARIANTS*':
+      case '*PROMP-TEST-VARIANTS*':
         history.push('/prompt-tester');
         break;
       default:

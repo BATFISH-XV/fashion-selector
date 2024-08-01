@@ -5,7 +5,7 @@ import MatchedResults from './Matched-Results';
 import SurpriseMe from './SurpriseMe';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import '../styles/PromptTester.css'; 
+import '../styles/PromptTester.css';
 
 function PromptTester() {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -14,13 +14,27 @@ function PromptTester() {
   const [bingData, setBingData] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingBing, setLoadingBing] = useState(false);
+  const [activeButtons, setActiveButtons] = useState({});
+
+  const colors = ['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow'];
+  const items = ['Shirt', 'Pants', 'Dress', 'Skirt', 'Jacket'];
+  const styles = ['Casual', 'Formal', 'Sporty'];
+  const details = ['Patterns', 'Plain', 'Stripes'];
+  const moods = ['Happy', 'Sad', 'Relaxed', 'Energetic'];
+  const occasions = ['Wedding', 'Party', 'Casual Outing', 'Office'];
+  const settings = ['Beach', 'Park', 'City', 'Countryside'];
+  const lightings = ['Bright', 'Dim', 'Natural', 'Artificial'];
+  const bodyTypes = ['Slim', 'Athletic', 'Curvy'];
+  const backgrounds = ['Plain', 'Nature', 'Urban'];
+  const trends = ['Vintage', 'Modern', 'Streetwear'];
+  const targetAudiences = ['Teens', 'Adults', 'Seniors'];
 
   const generatePrompt = (promptType, parameters) => {
     let prompt = '';
 
     switch (promptType) {
       case 'detailed':
-        prompt = `Create a high-quality image of a ${parameters.color} ${parameters.item} in ${parameters.style} style. The ${parameters.item} should feature ${parameters.details}. `;
+        prompt = `Create a high-quality image of a <b>${parameters.color} ${parameters.item}</b> in <b>${parameters.style}</b> style. The <b>${parameters.item}</b> should feature <b>${parameters.details}</b>. `;
         if (parameters.additionalItems) {
           prompt += `The ${parameters.item} should be styled with ${parameters.additionalItems}. `;
         }
@@ -28,27 +42,27 @@ function PromptTester() {
         break;
 
       case 'mood':
-        prompt = `Imagine a ${parameters.mood} outfit perfect for ${parameters.occasion}. Design a ${parameters.color} ${parameters.item} as the centerpiece of this outfit, incorporating ${parameters.details}. `;
+        prompt = `Imagine a <b>${parameters.mood}</b> outfit perfect for <b>${parameters.occasion}</b>. Design a <b>${parameters.color} ${parameters.item}</b> as the centerpiece of this outfit, incorporating <b>${parameters.details}</b>. `;
         if (parameters.additionalItems) {
           prompt += `Include ${parameters.additionalItems} to complete the look. `;
         }
-        prompt += `Showcase the outfit in a ${parameters.setting} with ${parameters.lighting} to emphasize the overall aesthetic.`;
+        prompt += `Showcase the outfit in a <b>${parameters.setting}</b> with <b>${parameters.lighting}</b> to emphasize the overall aesthetic.`;
         break;
 
       case 'wearer':
-        prompt = `Create a high-quality image of a ${parameters.bodyType} model wearing a ${parameters.color} ${parameters.item} in ${parameters.style} style. The ${parameters.item} should feature ${parameters.details}. `;
+        prompt = `Create a high-quality image of a <b>${parameters.bodyType}</b> model wearing a <b>${parameters.color} ${parameters.item}</b> in <b>${parameters.style}</b> style. The <b>${parameters.item}</b> should feature <b>${parameters.details}</b>. `;
         if (parameters.additionalItems) {
           prompt += `Style the model with ${parameters.additionalItems} to create a complete look. `;
         }
-        prompt += `The image should have a ${parameters.background}.`;
+        prompt += `The image should have a <b>${parameters.background}</b>.`;
         break;
 
       case 'trend':
-        prompt = `Design a ${parameters.color} ${parameters.item} inspired by the ${parameters.trend}. The ${parameters.item} should incorporate ${parameters.details} that reflect the key elements of this trend. `;
+        prompt = `Design a <b>${parameters.color} ${parameters.item}</b> inspired by the <b>${parameters.trend}</b>. The <b>${parameters.item}</b> should incorporate <b>${parameters.details}</b> that reflect the key elements of this trend. `;
         if (parameters.additionalItems) {
-          prompt += `Consider pairing the ${parameters.item} with ${parameters.additionalItems} to enhance the look. `;
+          prompt += `Consider pairing the <b>${parameters.item}</b> with ${parameters.additionalItems} to enhance the look. `;
         }
-        prompt += `Showcase the outfit in a way that highlights its unique features and appeals to ${parameters.targetAudience}.`;
+        prompt += `Showcase the outfit in a way that highlights its unique features and appeals to <b>${parameters.targetAudience}</b>.`;
         break;
 
       default:
@@ -124,52 +138,149 @@ function PromptTester() {
     }));
   };
 
+  const handleButtonClick = (buttonName) => {
+    setActiveButtons((prev) => ({
+      ...prev,
+      [buttonName]: !prev[buttonName],
+    }));
+  };
+
   const renderPromptFields = () => {
     switch (promptType) {
       case 'detailed':
         return (
           <>
-            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
-            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
-            <label>Style: <input name="style" onChange={handlePromptChange} /></label>
-            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
-            <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
+            <label>Color:
+              <select name="color" onChange={handlePromptChange}>
+                {colors.map(color => <option key={color} value={color}>{color}</option>)}
+              </select>
+            </label>
+            <label>Item:
+              <select name="item" onChange={handlePromptChange}>
+                {items.map(item => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </label>
+            <label>Style:
+              <select name="style" onChange={handlePromptChange}>
+                {styles.map(style => <option key={style} value={style}>{style}</option>)}
+              </select>
+            </label>
+            <label>Details:
+              <select name="details" onChange={handlePromptChange}>
+                {details.map(detail => <option key={detail} value={detail}>{detail}</option>)}
+              </select>
+            </label>
+            <label>Additional Items:
+              <input name="additionalItems" onChange={handlePromptChange} />
+            </label>
           </>
         );
       case 'mood':
         return (
           <>
-            <label>Mood: <input name="mood" onChange={handlePromptChange} /></label>
-            <label>Occasion: <input name="occasion" onChange={handlePromptChange} /></label>
-            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
-            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
-            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Mood:
+              <select name="mood" onChange={handlePromptChange}>
+                {moods.map(mood => <option key={mood} value={mood}>{mood}</option>)}
+              </select>
+            </label>
+            <label>Occasion:
+              <select name="occasion" onChange={handlePromptChange}>
+                {occasions.map(occasion => <option key={occasion} value={occasion}>{occasion}</option>)}
+              </select>
+            </label>
+            <label>Color:
+              <select name="color" onChange={handlePromptChange}>
+                {colors.map(color => <option key={color} value={color}>{color}</option>)}
+              </select>
+            </label>
+            <label>Item:
+              <select name="item" onChange={handlePromptChange}>
+                {items.map(item => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </label>
+            <label>Details:
+              <select name="details" onChange={handlePromptChange}>
+                {details.map(detail => <option key={detail} value={detail}>{detail}</option>)}
+              </select>
+            </label>
             <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
-            <label>Setting: <input name="setting" onChange={handlePromptChange} /></label>
-            <label>Lighting: <input name="lighting" onChange={handlePromptChange} /></label>
+            <label>Setting:
+              <select name="setting" onChange={handlePromptChange}>
+                {settings.map(setting => <option key={setting} value={setting}>{setting}</option>)}
+              </select>
+            </label>
+            <label>Lighting:
+              <select name="lighting" onChange={handlePromptChange}>
+                {lightings.map(lighting => <option key={lighting} value={lighting}>{lighting}</option>)}
+              </select>
+            </label>
           </>
         );
       case 'wearer':
         return (
           <>
-            <label>Body Type: <input name="bodyType" onChange={handlePromptChange} /></label>
-            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
-            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
-            <label>Style: <input name="style" onChange={handlePromptChange} /></label>
-            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Body Type:
+              <select name="bodyType" onChange={handlePromptChange}>
+                {bodyTypes.map(bodyType => <option key={bodyType} value={bodyType}>{bodyType}</option>)}
+              </select>
+            </label>
+            <label>Color:
+              <select name="color" onChange={handlePromptChange}>
+                {colors.map(color => <option key={color} value={color}>{color}</option>)}
+              </select>
+            </label>
+            <label>Item:
+              <select name="item" onChange={handlePromptChange}>
+                {items.map(item => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </label>
+            <label>Style:
+              <select name="style" onChange={handlePromptChange}>
+                {styles.map(style => <option key={style} value={style}>{style}</option>)}
+              </select>
+            </label>
+            <label>Details:
+              <select name="details" onChange={handlePromptChange}>
+                {details.map(detail => <option key={detail} value={detail}>{detail}</option>)}
+              </select>
+            </label>
             <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
-            <label>Background: <input name="background" onChange={handlePromptChange} /></label>
+            <label>Background:
+              <select name="background" onChange={handlePromptChange}>
+                {backgrounds.map(background => <option key={background} value={background}>{background}</option>)}
+              </select>
+            </label>
           </>
         );
       case 'trend':
         return (
           <>
-            <label>Color: <input name="color" onChange={handlePromptChange} /></label>
-            <label>Item: <input name="item" onChange={handlePromptChange} /></label>
-            <label>Trend: <input name="trend" onChange={handlePromptChange} /></label>
-            <label>Details: <input name="details" onChange={handlePromptChange} /></label>
+            <label>Color:
+              <select name="color" onChange={handlePromptChange}>
+                {colors.map(color => <option key={color} value={color}>{color}</option>)}
+              </select>
+            </label>
+            <label>Item:
+              <select name="item" onChange={handlePromptChange}>
+                {items.map(item => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </label>
+            <label>Trend:
+              <select name="trend" onChange={handlePromptChange}>
+                {trends.map(trend => <option key={trend} value={trend}>{trend}</option>)}
+              </select>
+            </label>
+            <label>Details:
+              <select name="details" onChange={handlePromptChange}>
+                {details.map(detail => <option key={detail} value={detail}>{detail}</option>)}
+              </select>
+            </label>
             <label>Additional Items: <input name="additionalItems" onChange={handlePromptChange} /></label>
-            <label>Target Audience: <input name="targetAudience" onChange={handlePromptChange} /></label>
+            <label>Target Audience:
+              <select name="targetAudience" onChange={handlePromptChange}>
+                {targetAudiences.map(audience => <option key={audience} value={audience}>{audience}</option>)}
+              </select>
+            </label>
           </>
         );
       default:
@@ -181,13 +292,22 @@ function PromptTester() {
     <div className="container">
       <div className="form-container">
         <h1>Discover Your Style - TEST PAGE</h1>
-        <p>This is a test page for generating style images with various prompts.</p>
+        {currentPrompt && (
+        <div className="prompt-preview">
+          <h2>Prompt Preview:</h2>
+          <p dangerouslySetInnerHTML={{ __html: generatePrompt(promptType, currentPrompt) }}></p>
+        </div>
+      )}
+        <p>THIS IS A TESTING PAGE FOR PROP VARIANTS </p>
         <div>
           <label htmlFor="promptType">Select Prompt Type: </label>
           <select
             id="promptType"
             value={promptType}
-            onChange={(e) => setPromptType(e.target.value)}
+            onChange={(e) => {
+              setPromptType(e.target.value);
+              handleButtonClick(e.target.value);
+            }}
           >
             <option value="detailed">Detailed</option>
             <option value="mood">Mood</option>
@@ -197,11 +317,22 @@ function PromptTester() {
         </div>
         <form>
           {renderPromptFields()}
-          <button type="button" onClick={handleGenerateImage}>
+          <button
+            type="button"
+            onClick={() => {
+              handleGenerateImage();
+              handleButtonClick('generate');
+            }}
+            className={activeButtons['generate'] ? 'active' : ''}
+          >
             Generate Image
           </button>
         </form>
-        <SurpriseMe onSurprise={handleSurprise} />
+        <SurpriseMe
+          onSurprise={handleSurprise}
+          handleButtonClick={handleButtonClick}
+          activeButtons={activeButtons}
+        />
         <br />
         {loading && (
           <div style={{ textAlign: 'center' }}>
@@ -212,8 +343,14 @@ function PromptTester() {
         {currentImageUrl && (
           <AIGenResult
             imageUrl={currentImageUrl}
-            onTryAgainClick={handleTryAgainClick}
-            onFindMatchingItemsClick={handleFindMatchingItemsClick}
+            onTryAgainClick={() => {
+              handleTryAgainClick();
+              handleButtonClick('tryAgain');
+            }}
+            onFindMatchingItemsClick={() => {
+              handleFindMatchingItemsClick();
+              handleButtonClick('findMatching');
+            }}
           />
         )}
       </div>
@@ -228,14 +365,7 @@ function PromptTester() {
           <p>Finding Matching Items...</p>
         </div>
       )}
-      {currentPrompt && (
-        <div className="prompt-preview">
-          <h2>Prompt Preview:</h2>
-          <p dangerouslySetInnerHTML={{ __html: generatePrompt(promptType, currentPrompt) }}></p>
-        </div>
-      )}
     </div>
   );
 }
-
 export default PromptTester;

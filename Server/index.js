@@ -25,7 +25,7 @@ const authController = require('./Controllers/authController');
 const openaiImageController = require('./Controllers/openaiImageController');
 const bingSearchController = require('./Controllers/bingSearchController');
 const profileController = require('./Controllers/profileController');
-
+const promptTesterController = require('./Controllers/promptTesterController.js');
 const artPromptTesterController = require('./Controllers/artPromptTesterController.js');
 const favoritesController = require('./Controllers/favoritesController.js');
 const feedController = require('./Controllers/feedController.js');
@@ -42,24 +42,18 @@ app.use(express.json());
 const upload = multer({ storage: multer.memoryStorage() });
 
 
-//ACCOUNT MANAGEMENT
-/**
- * upload.single is part of mutter middleware library and
- * is a method is w/ with the name of the file input field in the
- * HTML form it came from as an arg. Then, it processes 
- * the incoming file upload and make the file avail
- * in the req.file object (like express but for binary data with 
- * the content-typoe 'multipart/form-data'
- */
+//ACCOUNT MANGEMENT
 app.post('/api/signup', authController.signup);
 app.post('/api/login', authController.login);
 
-// IMAGE CREATION AND DISCOVERY
+//AI-IMAGE GENERATION
 app.post('/api/generate-image', openaiImageController.ImgGenService);
+
+//IMAGE SEARCH ENGINE
 app.post('/api/match-service', bingSearchController.matchService);
 
-// app.post('/api/generate-image/test', promptTesterController.generateImageTest);
-// app.post('/api/match-service', promptTesterController.matchService);
+app.post('/api/generate-image/test', promptTesterController.generateImageTest);
+app.post('/api/match-service/test', promptTesterController.matchService);
 
 // ACCOUNT MANAGEMENT
 app.post('/api/upload-avatar', upload.single('avatar'), profileController.uploadAvatar);

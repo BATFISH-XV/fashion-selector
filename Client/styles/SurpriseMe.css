@@ -1,0 +1,29 @@
+button {
+  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.gender-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.surprise-me-container {
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../index.css'; 
+import '../index.css';
 
 function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPrompt }) {
   const [interests, setInterests] = useState('');
@@ -56,7 +56,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
     <form onSubmit={handleSubmit} className="form-container2">
       <label>
         Interests
-        <br></br>
+        <br />
         <select name="interests" value={interests} onChange={(e) => setInterests(e.target.value)}>
           <option value="">Select Interest</option>
           <option value="nature">Nature</option>
@@ -66,11 +66,11 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="fantasy">Fantasy</option>
         </select>
       </label>
-      <br></br>
-      
+      <br />
+
       <label>
         Favorite Color Palette
-        <br></br>
+        <br />
         <select name="colorPalette" value={colorPalette} onChange={(e) => setColorPalette(e.target.value)}>
           <option value="">Select Color Palette</option>
           <option value="warm">Warm</option>
@@ -80,11 +80,11 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="pastel">Pastel</option>
         </select>
       </label>
-      <br></br>
+      <br />
 
       <label>
         Location in House
-        <br></br>
+        <br />
         <select name="location" value={location} onChange={(e) => setLocation(e.target.value)}>
           <option value="">Select Location</option>
           <option value="living room">Living Room</option>
@@ -94,11 +94,11 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="hallway">Hallway</option>
         </select>
       </label>
-      <br></br>
+      <br />
 
       <label>
         Medium
-        <br></br>
+        <br />
         <select name="medium" value={medium} onChange={(e) => setMedium(e.target.value)}>
           <option value="">Select Medium</option>
           <option value="photo">Photo</option>
@@ -107,11 +107,11 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="digital">Digital</option>
         </select>
       </label>
-      <br></br>
+      <br />
 
       <label>
         Preferred Topics
-        <br></br>
+        <br />
         <select name="preferredTopics" value={preferredTopics} onChange={(e) => setPreferredTopics(e.target.value)}>
           <option value="">Select Preferred Topic</option>
           <option value="landscapes">Landscapes</option>
@@ -121,11 +121,11 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="fantasy">Fantasy</option>
         </select>
       </label>
-      <br></br>
+      <br />
 
       <label>
         Excluded Topics
-        <br></br>
+        <br />
         <select name="excludedTopics" value={excludedTopics} onChange={(e) => setExcludedTopics(e.target.value)}>
           <option value="">Select Excluded Topic</option>
           <option value="violence">Violence</option>
@@ -134,7 +134,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
           <option value="religion">Religion</option>
         </select>
       </label>
-      <br></br>
+      <br />
 
       <button className="generateImage" type="submit">Generate Image</button>
     </form>

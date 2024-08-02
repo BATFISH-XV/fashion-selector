@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ArtPromptForm from './AI-Gen-Form';
-import AIGenResult from './AI-Gen-Result';
-import MatchedResults from './Matched-Results';
+import ArtPromptForm from './ArtPromptForm';
+import AIGenResult from './AIGenResult';
+import MatchedArtResults from './MatchedArtResults';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import '../index.css'; 
+import '../index.css';
 
 function ArtPromptTester({ userID }) {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -102,7 +102,7 @@ function ArtPromptTester({ userID }) {
         )}
       </div>
       {bingData && (
-        <MatchedResults
+        <MatchedArtResults
           bingData={bingData}
           currentImageUrl={currentImageUrl}
           currentPrompt={promptDetails}

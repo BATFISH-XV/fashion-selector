@@ -1,6 +1,6 @@
 button {
-  background-color: #f0f0f0;
-  color: black;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
   border: 1px solid #ccc;
   padding: 10px 20px;
   margin: 5px;
@@ -9,13 +9,13 @@ button {
 }
 
 button.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #000; /* Black background for active state */
+  color: #fff; /* White text for active state */
 }
 
 button:hover {
-  background-color: #0056b3;
-  color: white;
+  background-color: #333; /* Dark gray background for hover state */
+  color: #fff; /* White text for hover state */
 }
 
 .gender-buttons {

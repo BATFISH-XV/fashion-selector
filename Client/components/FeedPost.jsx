@@ -24,12 +24,28 @@ const FeedPost = ({ post }) => {
         <Box className="post-info">
           <Button
             variant="outlined"
+            sx={{
+              backgroundColor: '#000', /* Black background */
+              color: '#fff', /* White text */
+              '&:hover': {
+                backgroundColor: '#333', /* Dark gray background */
+                color: '#fff', /* White text */
+              },
+            }}
             onClick={() => window.open(post.url, '_blank', 'noopener noreferrer')}
           >
             Learn More
           </Button>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton aria-label="favorite">
+            <IconButton
+              aria-label="favorite"
+              sx={{
+                color: '#000', /* Black background */
+                '&:hover': {
+                  color: '#333', /* Dark gray background */
+                },
+              }}
+            >
               <StarBorderIcon />
             </IconButton>
             <Typography variant="body2" color="text.secondary">

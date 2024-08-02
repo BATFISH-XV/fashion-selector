@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(#2D6C8F, #999999);
+  background: linear-gradient(#2D6C8F, #999999);
   color: #999999;
   background-attachment: fixed;
 }
@@ -14,10 +14,8 @@ body {
   align-items: center;
   background-color: #1976D2;
   padding: 10px 20px;
-
   position: fixed;
   /* Fixed position so nav bar stays @ top of page */
-
   width: 100%;
   z-index: 1000;
 }
@@ -136,7 +134,7 @@ body {
 .fashion {
   margin-left: 10px;
   margin-top: 0px;
-  color: black
+  color: black;
 }
 
 .generated-image {
@@ -203,20 +201,34 @@ button {
   margin: 5px;
   padding: 5px;
   height: 30px;
-  background-color: #2C2C2C;
-  color: #F5F5F5;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
   border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button.active {
+  background-color: #000; /* Black background for active state */
+  color: #fff; /* White text for active state */
+}
+
+button:hover {
+  background-color: #333; /* Dark gray background for hover state */
+  color: #fff; /* White text for hover state */
 }
 
 .speechButton {
   margin-right: 0px;
+  text-align: center;
   font-size: x-small;
   height: 22px;
 }
 
 .generateImage {
   margin-top: 20px;
-  margin-left: 104px
+  margin-left: 104px;
 }
 
 .image-results::-webkit-scrollbar {
@@ -249,22 +261,19 @@ a:active {
   color: #2D6C8F;
 }
 
-
-/* Adding centering for the the CircularProgress component */
+/* Adding centering for the CircularProgress component */
 .center-loading {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
-
 }
-
 
 .surprise-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #1976D2;
-  color: #fff;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -272,7 +281,7 @@ a:active {
 }
 
 .surprise-button:hover {
-  background-color: #1565C0;
+  background-color: #333; /* Dark gray background */
 }
 
 .gender-toggle {

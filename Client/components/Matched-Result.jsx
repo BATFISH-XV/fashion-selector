@@ -47,7 +47,7 @@ function MatchedResult({ image, currentImageUrl, currentPrompt, userId }) {
   return (
     <div className='matchedResult'>
       <a href={image.hostPageUrl} target="_blank" rel="noopener noreferrer">
-        <img src={image.contentUrl} alt={image.name} />
+      <img src={image.contentUrl} alt={image.name} className="matchedImage" />
         <br />
         {itemName}
       </a>

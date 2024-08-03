@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import AIGenForm from './AI-Gen-Form';
-import AIGenResult from './AI-Gen-Result';
-import MatchedResults from './Matched-Results';
+import AIGenForm from '../components/AI-Gen-Form';
+import AIGenResult from '../components/AI-Gen-Result';
+import MatchedResults from '../components/Matched-Results';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
 

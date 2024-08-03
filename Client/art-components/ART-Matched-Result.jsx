@@ -9,6 +9,8 @@ function MatchedArtResult({ image, currentImageUrl, currentPrompt, userId }) {
   const [fill, setFill] = useState('currentColor');
   const [path, setPath] = useState(emptyStarPath);
 
+    console.log(`Rendering image: ${image.name} with URL: ${image.contentUrl}`);
+
   let itemName = image.name.length > 50 ? `${image.name.slice(0, 50)}...` : image.name;
 
   const handleAddToFavorites = async () => {
@@ -42,7 +44,7 @@ function MatchedArtResult({ image, currentImageUrl, currentPrompt, userId }) {
   return (
     <div className='matchedResult'>
       <a href={image.hostPageUrl} target="_blank" rel="noopener noreferrer">
-        <img src={image.contentUrl} alt={image.name} />
+      <img src={image.contentUrl} alt={image.name} className="matchedImage" />
         <br />
         {itemName}
       </a>

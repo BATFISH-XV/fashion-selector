@@ -9,7 +9,7 @@ import HomePage from './Pages/HomePage';
 import About from './Pages/About';
 import MyAccount from './Pages/MyAccount';
 import ForYouFeed from './Pages/ForYouFeed';
-import ArtPromptTester from './art-components/ArtPrompTester';
+import ArtPromptTester from './art-components/ART-Style-Image-Search';
 import Favorites from './Pages/Favorites';
 import DiscoverPrompt from './components/DiscoverPrompt';
 
@@ -29,7 +29,7 @@ const Routes = () => {
           <Route path="/about" component={About} />
           <Route path="/myAccount" component={MyAccount} />
           <Route path="/feed" component={ForYouFeed} />
-          {/* <Route path="/discover" render={(props) => <DiscoverPrompt {...props} userId={user?.id} pageType="discover" />} /> */}
+          <Route path="/discover" render={(props) => <DiscoverPrompt {...props} userId={user?.id} pageType="discover" />} />
           <Route path="/discover" render={(props) => <DiscoverPrompt {...props} userId={user?.id} />} />
           <Route path="/favorites" render={(props) => <Favorites {...props} userId={user?.id} />} />
           <Route path="/art" render={(props) => <ArtPromptTester {...props} userId={user?.id} />} />

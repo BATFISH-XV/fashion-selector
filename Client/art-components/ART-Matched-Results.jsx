@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import MatchedArtResult from './MatchedArtResult';
 import '../index.css';
+import MatchedArtResult from './ART-Matched-Result';
 
 function MatchedArtResults({ bingData, currentImageUrl, currentPrompt, userId }) {
   useEffect(() => {
@@ -13,9 +13,10 @@ function MatchedArtResults({ bingData, currentImageUrl, currentPrompt, userId })
   }, [bingData, currentImageUrl, currentPrompt, userId]);
 
   return (
-    <div className="art-matched-results-container">
-      <h2 className="searchResults">Search results</h2>
-      <div className="art-matched-results">
+    <>
+    <h2 className='searchResults'>Search results</h2>
+    <div className="bingContainer">
+    <div className="image-results">
         {bingData.map((image, index) => (
           <MatchedArtResult 
             key={index} 
@@ -26,8 +27,10 @@ function MatchedArtResults({ bingData, currentImageUrl, currentPrompt, userId })
           />
         ))}
       </div>
-    </div>
+    </div >
+      </>
   );
 }
+
 
 export default MatchedArtResults;

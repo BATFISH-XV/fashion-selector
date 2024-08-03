@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3003;
 
-// Controllers
+// Controllers  
 const authController = require('./Controllers/authController');
 const openaiImageController = require('./Controllers/openaiImageController');
 const bingSearchController = require('./Controllers/bingSearchController');
@@ -18,8 +18,9 @@ const artPromptTesterController = require('./Controllers/artPromptTesterControll
 const favoritesController = require('./Controllers/favoritesController');
 const feedController = require('./Controllers/feedController');
 
-console.log('Supabase URL:', process.env.SUPABASE_URL); 
-console.log('Supabase Key:', process.env.SUPABASE_KEY);
+// console.log('Supabase URL:', process.env.SUPABASE_URL); // Add logging
+// console.log('Supabase Key:', process.env.SUPABASE_KEY); // Add logging
+// console.log('Session Key:', process.env.SESSION_KEY); // Add logging
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -63,6 +64,14 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
+
+/**
+ * This file exports the Express app without starting the server. This makes it reusable in tests.
+ * Starting up the server with app.listen below breaks supertest - the server will now be started from a separate file, startServer.js
+ */
+
+// app.listen(PORT, () => { 
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+module.exports = app;

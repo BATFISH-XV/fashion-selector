@@ -1,2 +1,9 @@
 node_modules/
 package-lock.json
+.env
+
+// Jenkins Credentials
+
+User: stabb-rabbit
+Password: abc123
+Base URL: http://localhost:8080/iteration-project

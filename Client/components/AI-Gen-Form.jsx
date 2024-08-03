@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SpeechRecognition from './SpeechRecognition';
 
-<<<<<<< HEAD
-function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, currentPrompt }) {
-=======
-function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingData }) {
->>>>>>> edded58b2851385e2619f257d93134e9eafe83ff
+function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingData, currentPrompt }) {
+
   const [item, setItem] = useState('');
   const [color, setColor] = useState('');
   const [style, setStyle] = useState('');
@@ -40,8 +37,8 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
   };
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
+    <form
+      onSubmit={handleSubmit}
       className="form-container2">
 
       <label>
@@ -55,7 +52,7 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
         <SpeechRecognition key="item" formId="item" setter={setItem} />
       </label>
       <br></br>
-      
+
 
       <label>
         Color
@@ -68,7 +65,7 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
         <SpeechRecognition key="color" formId="color" setter={setColor} />
       </label>
       <br></br>
-      
+
 
       <label>
         Style
@@ -81,7 +78,7 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
         <SpeechRecognition key="style" formId="style" setter={setStyle} />
       </label>
       <br></br>
-      
+
 
       <label>
         Features
@@ -94,7 +91,7 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
         <SpeechRecognition key="features" formId="features" setter={setFeatures} />
       </label>
       <br></br>
-      
+
 
       <label>
         Additional info
@@ -105,9 +102,9 @@ function AIGenForm({ onImageGenerated, setLoading, setCurrentImageUrl, setBingDa
           onChange={(e) => setAdditional(e.target.value)}
         />
         <SpeechRecognition key="additional" formId="additional" setter={setAdditional} />
-      </label> 
+      </label>
       <br></br>
-      
+
 
       <button className="generateImage" type="submit">Generate Image</button>
     </form>

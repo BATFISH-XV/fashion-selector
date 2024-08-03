@@ -19,23 +19,20 @@ const Routes = () => {
   return (
     <Router>
       <ResponsiveAppBar />
-    <div className="main-content">
-      <LoginStatus />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/search" component={ImageSearch} />
-        <Route path="/about" component={About} />
-        <Route path="/myAccount" component={MyAccount} />
-
-        <Route path="/favorites" component={Favorites} />
-      </Switch>
-
-        <Route path="/feed" component={ForYouFeed} />
-        <Route path="/prompt-tester" component={PromptTester} />
+      <div className="main-content">
+        <LoginStatus />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/search" component={ImageSearch} />
+          <Route path="/about" component={About} />
+          <Route path="/myAccount" component={MyAccount} />
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/feed" component={ForYouFeed} />
+          <Route path="/prompt-tester" component={PromptTester} />
         </Switch>
-              </div>
+      </div>
 
     </Router>
   );

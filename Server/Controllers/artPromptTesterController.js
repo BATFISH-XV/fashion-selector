@@ -6,9 +6,9 @@ dotenv.config();
 
 const endpoint_openai = process.env.OPENAI_ENDPOINT;
 const openai_key = process.env.OPENAI_API_KEY;
-const endpoint_bing = process.env.BING_ENDPOINT;
-const subscriptionKey_bing = process.env.SUBSCRIPTION_KEY;
 
+const endpoint_bing = 'https://api.bing.microsoft.com/v7.0/images/visualsearch';
+const subscriptionKey_bing = process.env.SUBSCRIPTION_KEY;
 const artPromptTesterController = {};
 
 const generatePrompt = (details) => {

@@ -15,7 +15,6 @@ body {
   background-color: #1976D2;
   padding: 10px 20px;
   position: fixed;
-  /* Fixed position so nav bar stays @ top of page */
   width: 100%;
   z-index: 1000;
 }
@@ -48,16 +47,21 @@ body {
 }
 
 .generatedImg {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 300px;
+  max-height: 300px;
   height: auto;
   border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.imgBtnContainer button {
+  margin: 0 10px;
 }
 
 .imgBtnContainer {
-  /* background-color: blue; */
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .dallEProgress {
@@ -110,13 +114,25 @@ body {
   border-radius: 10px;
   padding: 10px;
   width: 260px;
-  max-height: 400px;
+  max-height: 450px;
+}
+
+.form-container button {
+  margin-top: 2px;
+}
+
+.form-container2 label {
+  display: block;
 }
 
 .form-container2 {
-  /* background-color: red; */
   border-radius: 10px;
-  max-height: 400px;
+  max-height: 200px;
+}
+
+.art-form-container2 label {
+  display: block;
+  margin-bottom: -5px;
 }
 
 .rightContainer {
@@ -126,9 +142,29 @@ body {
   align-items: center;
 }
 
+.discoverClass form > label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.art-search-page {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+
+.discoverContainer {
+  padding: 10px;
+  width: 260px;
+  max-height: 400px;
+}
+
 .discover {
   margin-left: 10px;
   margin-bottom: 5px;
+}
+
+.discoverClass {
+  padding: 10px;
 }
 
 .fashion {
@@ -139,28 +175,25 @@ body {
 
 .generated-image {
   display: flex;
-  text-align: center;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.bingContainer {
-  flex-grow: 1;
+.bing-container {
+  width: 100%;
   display: flex;
-  width: 95%;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .image-results {
   display: flex;
-  flex-grow: 1;
   flex-wrap: wrap;
-  max-width: 80vw;
-  padding: 10px;
-  border-radius: 5px;
   justify-content: center;
-  margin-bottom: 30px;
+  width: 80%;
+  margin-top: 20px;
 }
 
 .image-results img {
@@ -169,31 +202,33 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.searchResults {
+.search-results {
   color: white;
-  text-align: left;
+  text-align: center;
 }
 
-.matchedResult {
+.matched-result {
   width: 200px;
   height: 200px;
   background-color: white;
-  margin: 5px 5px 5px 5px;
+  margin: 10px;
   border-radius: 5px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-content: space-between;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.matched-result img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .star {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
   cursor: pointer;
 }
 
@@ -201,8 +236,8 @@ button {
   margin: 5px;
   padding: 5px;
   height: 30px;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
+  background-color: #000;
+  color: #fff;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -210,13 +245,13 @@ button {
 }
 
 button.active {
-  background-color: #000; /* Black background for active state */
-  color: #fff; /* White text for active state */
+  background-color: #000;
+  color: #fff;
 }
 
 button:hover {
-  background-color: #333; /* Dark gray background for hover state */
-  color: #fff; /* White text for hover state */
+  background-color: #333;
+  color: #fff;
 }
 
 .speechButton {
@@ -261,7 +296,6 @@ a:active {
   color: #2D6C8F;
 }
 
-/* Adding centering for the CircularProgress component */
 .center-loading {
   display: flex;
   justify-content: center;
@@ -272,8 +306,8 @@ a:active {
 .surprise-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
+  background-color: #000;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -281,7 +315,7 @@ a:active {
 }
 
 .surprise-button:hover {
-  background-color: #333; /* Dark gray background */
+  background-color: #333;
 }
 
 .gender-toggle {

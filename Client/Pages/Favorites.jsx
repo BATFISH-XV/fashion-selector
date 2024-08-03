@@ -1,82 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import FavoriteItem from '../components/FavoriteItem';
 
 const PageContainer = styled.div`
   max-width: 1025px;
   padding: 50px;
   margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
-const FavoritesRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: space-around;
-  width: 100%;
-  padding: 10px;
-  margin: 70px 0;
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  width: 400px;
-  border-style: solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-`;
-
-const Placeholder = styled.img`
-  width: 90%;
-  height: 90%;
-  background: #f0f0f0;
-`;
-
-const PromptText = styled.div`
-  margin-top: 10px;
+const ErrorMessage = styled.div`
+  color: red;
   text-align: center;
-  font-size: 14px;
-  color: #555;
+  margin-top: 20px;
 `;
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 600px;
-`;
-
-const Card = styled.div`
-  height: 165px;
-  width: 165px;
-  background-color: #f0f0f0;
-  margin: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-style: solid;
-  border-radius: 2rem;
-`;
-
-const Image = styled.img`
-  height: 100px;
-  width: 100px;
-  position: relative;
-`;
-
-const Label = styled.div`
-  margin-top: 15px;
+const NoFavoritesMessage = styled.div`
   text-align: center;
-`;
-
-const RetailerLabel = styled(Label)`
-  color: #333;
-  font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
 `;
 
 const Favorites = ({ userId }) => {
@@ -102,41 +46,32 @@ const Favorites = ({ userId }) => {
   }, [userId]);
 
   if (error) {
-    return <div>Error fetching favorites: {error.message}</div>;
+    return <ErrorMessage>Error fetching favorites: {error.message}</ErrorMessage>;
   }
+
+  // Group favorites by AI image prompt
+  const groupedFavorites = favorites.reduce((acc, favorite) => {
+    const prompt = JSON.stringify(favorite.prompt); // Convert prompt to a string for easy grouping
+    if (!acc[prompt]) {
+      acc[prompt] = {
+        prompt: favorite.prompt,
+        imageUrl: favorite.imageUrl,
+        matchedImages: [],
+      };
+    }
+    acc[prompt].matchedImages.push(...favorite.matchedImages);
+    return acc;
+  }, {});
+
+  const formattedFavorites = Object.values(groupedFavorites);
 
   return (
     <PageContainer>
-      {favorites.length === 0 ? (
-        <div>No favorites found</div>
+      {formattedFavorites.length === 0 ? (
+        <NoFavoritesMessage>No favorites found</NoFavoritesMessage>
       ) : (
-        favorites.map((favorite, index) => (
-          <FavoritesRow key={index}>
-            <ImageContainer>
-              <Placeholder
-                src={favorite.imageUrl || 'https://via.placeholder.com/400x200'}
-                onError={(e) => (e.target.src = 'https://via.placeholder.com/400x200')}
-              />
-              <PromptText>{favorite.prompt}</PromptText>
-            </ImageContainer>
-            <CardContainer>
-              {favorite.matchedImages && favorite.matchedImages.length > 0 ? (
-                favorite.matchedImages.map((image, idx) => (
-                  <Card key={idx}>
-                    <Image
-                      src={image.photoUrl || 'https://via.placeholder.com/100'}
-                      alt="placeholder"
-                      onError={(e) => (e.target.src = 'https://via.placeholder.com/100')}
-                    />
-                    <RetailerLabel>{image.name}</RetailerLabel>
-                    <Label>{image.title}</Label>
-                  </Card>
-                ))
-              ) : (
-                <div>No matched images found</div>
-              )}
-            </CardContainer>
-          </FavoritesRow>
+        formattedFavorites.map((favorite, index) => (
+          <FavoriteItem key={index} favorite={favorite} />
         ))
       )}
     </PageContainer>

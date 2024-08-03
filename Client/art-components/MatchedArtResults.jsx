@@ -13,22 +13,20 @@ function MatchedArtResults({ bingData, currentImageUrl, currentPrompt, userId })
   }, [bingData, currentImageUrl, currentPrompt, userId]);
 
   return (
-    <>
-      <h2 className='searchResults'>Search results</h2>
-      <div className="bingContainer">
-        <div className="image-results">
-          {bingData.map((image, index) => (
-            <MatchedArtResult 
-              key={index} 
-              image={image} 
-              currentImageUrl={currentImageUrl} 
-              currentPrompt={currentPrompt} 
-              userId={userId}
-            />
-          ))}
-        </div>
+    <div className="art-matched-results-container">
+      <h2 className="searchResults">Search results</h2>
+      <div className="art-matched-results">
+        {bingData.map((image, index) => (
+          <MatchedArtResult 
+            key={index} 
+            image={image} 
+            currentImageUrl={currentImageUrl} 
+            currentPrompt={currentPrompt} 
+            userId={userId}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -63,64 +63,61 @@ function ArtPromptTester({ userID }) {
       console.error('Error saving favorite:', error.response ? error.response.data : error.message);
     }
   };
-
   return (
-    <div className="search-page">
-      <div className="form-container">
-        <h1>Discover Your Art</h1>
-        <p>Find art for your house based on various parameters.</p>
-        <ArtPromptForm
-          onImageGenerated={handleImageGenerated}
-          setLoading={setLoading}
-          setCurrentImageUrl={setCurrentImageUrl}
-          currentPrompt={promptDetails}
-        />
-        <br />
-        {loading && (
-          <div style={{ textAlign: 'center' }}>
-            <CircularProgress />
-            <p>Generating Art...</p>
-          </div>
-        )}
-        {currentImageUrl && (
-          <>
-            <AIGenResult
-              imageUrl={currentImageUrl}
-              onTryAgainClick={handleGenerateImage}
-              onFindMatchingItemsClick={handleFindMatchingItemsClick}
+    <>
+      <div className="spacer"></div>
+      <div className="containerOuter">
+        <div className="container">
+          <div className="form-container">
+            <p className="discover">Discover your style</p>
+            <h3 className="fashion">Art</h3>
+            <hr />
+            <ArtPromptForm
+              onImageGenerated={handleImageGenerated}
+              setLoading={setLoading}
+              setCurrentImageUrl={setCurrentImageUrl}
+              currentPrompt={promptDetails}
             />
-            <button className="generateImage" type="button" onClick={handleFavorite}>
-              Favorite This Image
-            </button>
-          </>
-        )}
-        {loadingBing && (
-          <div style={{ textAlign: 'center' }}>
-            <LinearProgress />
-            <p>Finding Matching Items...</p>
+            <br />
           </div>
-        )}
+          <div className="rightContainer">
+            {loading && (
+              <div className="dallEProgress" style={{ textAlign: 'center' }}>
+                <CircularProgress />
+                <p>Generating Art...</p>
+              </div>
+            )}
+            {currentImageUrl && (
+              <AIGenResult
+                imageUrl={currentImageUrl}
+                onTryAgainClick={handleGenerateImage}
+                onFindMatchingItemsClick={handleFindMatchingItemsClick}
+              />
+            )}
+            {/* {currentImageUrl && (
+              <button className="generateImage" type="button" onClick={handleFavorite}>
+                Favorite This Image
+              </button>
+            )} */}
+            {loadingBing && (
+              <div style={{ textAlign: 'center' }}>
+                <LinearProgress />
+                <p>Finding Matching Items...</p>
+              </div>
+            )}
+          </div>
+          {bingData && (
+            <MatchedArtResults
+              bingData={bingData}
+              currentImageUrl={currentImageUrl}
+              currentPrompt={promptDetails}
+              userID={userID}
+            />
+          )}
+        </div>
       </div>
-      {bingData && (
-        <MatchedArtResults
-          bingData={bingData}
-          currentImageUrl={currentImageUrl}
-          currentPrompt={promptDetails}
-          userID={userID}
-        />
-      )}
-      <div className="favorites-container">
-        <h2>Favorites</h2>
-        <ul>
-          {favorites.map((favorite, index) => (
-            <li key={index}>
-              <img src={favorite.imageUrl} alt={`Favorite ${index}`} />
-              <p>{generatePrompt(favorite.details)}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+      <div className="spacerBottom"></div>
+    </>
   );
 }
 

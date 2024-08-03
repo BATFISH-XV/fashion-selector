@@ -53,7 +53,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container2">
+    <form onSubmit={handleSubmit} className="art-form-container2">
       <label>
         Interests
         <br />

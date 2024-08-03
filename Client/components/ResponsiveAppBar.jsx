@@ -16,8 +16,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth } from '../Auth/AuthContext';
 
-const pagesLoggedOut = ['Login', 'Sign Up', 'About', '**ART-PROMPT-TESTER*', '*PROMP-TEST-VARIANTS*'];
-const pagesLoggedIn = ['Search', 'Feed', 'Favorites', 'ART', '*ART-PROMPT-TESTER*', '*PROMP-TEST-VARIANTS*'];
+const pagesLoggedOut = ['Login', 'Sign Up', 'About'];
+const pagesLoggedIn = ['Search', 'Feed', 'Favorites', 'Art', 'Discover'];
 const settings = ['My Account', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -60,11 +60,11 @@ function ResponsiveAppBar() {
       case 'About':
         history.push('/about');
         break;
-      case '*ART-PROMPT-TESTER*':
-        history.push('/art-tester');
+      case 'Art':
+        history.push('/art');
         break;
-      case '*PROMP-TEST-VARIANTS*':
-        history.push('/prompt-tester');
+      case 'Discover':
+        history.push('/discover');
         break;
       default:
         console.log('Unknown page:', page);

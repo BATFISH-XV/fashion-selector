@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useAuth } from './Auth/AuthContext';
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
-import LoginStatus from './Auth/LoginStatus';
 import StyleImageSearchPage from './components/StyleImageSearchPage';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import HomePage from './Pages/HomePage';
@@ -12,7 +11,8 @@ import MyAccount from './Pages/MyAccount';
 import ForYouFeed from './Pages/ForYouFeed';
 import ArtPromptTester from './art-components/ArtPrompTester';
 import Favorites from './Pages/Favorites';
-import PromptTester from './components/PromptTester';
+import DiscoverPrompt from './components/DiscoverPrompt';
+
 const Routes = () => {
   const { user } = useAuth();
 
@@ -20,7 +20,7 @@ const Routes = () => {
     <Router>
       <ResponsiveAppBar />
       <div className="main-content">
-        <LoginStatus />
+        {/* <LoginStatus /> */}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={Login} />
@@ -29,11 +29,10 @@ const Routes = () => {
           <Route path="/about" component={About} />
           <Route path="/myAccount" component={MyAccount} />
           <Route path="/feed" component={ForYouFeed} />
-          <Route path="/prompt-tester" component={PromptTester} />
-          <Route path="/art-tester" render={(props) => <ArtPromptTester {...props} userId={user?.id} />} />
+          {/* <Route path="/discover" render={(props) => <DiscoverPrompt {...props} userId={user?.id} pageType="discover" />} /> */}
+          <Route path="/discover" render={(props) => <DiscoverPrompt {...props} userId={user?.id} />} />
           <Route path="/favorites" render={(props) => <Favorites {...props} userId={user?.id} />} />
-           <Route path="/myAccount" component={MyAccount} />
-
+          <Route path="/art" render={(props) => <ArtPromptTester {...props} userId={user?.id} />} />
         </Switch>
       </div>
     </Router>

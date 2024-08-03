@@ -58,7 +58,7 @@ function StyleImageSearchPage({ userId }) {
       <div className="containerOuter">
         <div className="container">
           <div className="form-container">
-            <p className="discover">Discover your style</ p>
+            <p className="discover">Search your style</ p>
             <h3 className="fashion">Fashion, Art, Furniture</h3>
         <hr></hr>
         <AIGenForm
@@ -68,7 +68,7 @@ function StyleImageSearchPage({ userId }) {
           currentPrompt={currentPrompt}
         />
         <br />
-        </div>
+        </div> 
         <div className="rightContainer">
         {loading && (
           <div className="dallEProgress" style={{ textAlign: 'center' }}>

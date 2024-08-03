@@ -32,11 +32,8 @@ const ForYouFeed = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom sx={{ mt: 4 }}>
+      <Typography variant="h2" gutterBottom sx={{ mt: 20 }}>
         See what's trending
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        Subheading
       </Typography>
       <div className="feed-container">
         {feedPosts.map((feedPost) => (

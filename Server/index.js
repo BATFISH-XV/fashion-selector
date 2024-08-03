@@ -38,7 +38,7 @@ app.post('/api/generate-image', openaiImageController.ImgGenService);
 app.post('/api/match-service', bingSearchController.matchService);
 
 app.post('/api/generate-image/test', promptTesterController.generateImageTest);
-app.post('/api/match-service/test', promptTesterController.matchService);
+app.post('/api/match-service/test', bingSearchController.matchService);
 
 // Account Management
 app.post('/api/upload-avatar', upload.single('avatar'), profileController.uploadAvatar);

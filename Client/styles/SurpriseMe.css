@@ -1,3 +1,4 @@
+/* CSS file */
 button {
   background-color: #000; /* Black background */
   color: #fff; /* White text */
@@ -9,12 +10,12 @@ button {
 }
 
 button.active {
-  background-color: #000; /* Black background for active state */
+  background-color: grey; /* Grey background for active state */
   color: #fff; /* White text for active state */
 }
 
 button:hover {
-  background-color: #333; /* Dark gray background for hover state */
+  background-color: grey; /* Dark gray background for hover state */
   color: #fff; /* White text for hover state */
 }
 
@@ -26,4 +27,31 @@ button:hover {
 
 .surprise-me-container {
   text-align: center;
+}
+
+.surprise-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.surprise-button:hover {
+  background-color: #333;
+}
+
+.gender-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.gender-toggle label {
+  margin-right: 10px;
+  font-size: 16px;
 }

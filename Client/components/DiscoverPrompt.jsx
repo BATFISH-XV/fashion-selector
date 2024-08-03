@@ -5,7 +5,7 @@ import MatchedResults from './Matched-Results';
 import SurpriseMe from './SurpriseMe';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
-import '../index.css'
+import '../index.css';
 
 function DiscoverPrompt({ userId }) {
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -15,6 +15,7 @@ function DiscoverPrompt({ userId }) {
   const [loading, setLoading] = useState(false);
   const [loadingBing, setLoadingBing] = useState(false);
   const [activeButtons, setActiveButtons] = useState({});
+  const [formSize, setFormSize] = useState('medium'); // New state for form size
 
   const colors = ['Red', 'Blue', 'Green', 'Black', 'White', 'Yellow'];
   const items = ['Shirt', 'Pants', 'Dress', 'Skirt', 'Jacket'];
@@ -153,6 +154,23 @@ function DiscoverPrompt({ userId }) {
       [buttonName]: !prev[buttonName],
     }));
   };
+
+  useEffect(() => {
+    switch (promptType) {
+      case 'detailed':
+        setFormSize('small');
+        break;
+      case 'mood':
+      case 'wearer':
+        setFormSize('medium');
+        break;
+      case 'trend':
+        setFormSize('large');
+        break;
+      default:
+        setFormSize('medium');
+    }
+  }, [promptType]);
 
   const renderPromptFields = () => {
     switch (promptType) {
@@ -302,9 +320,8 @@ function DiscoverPrompt({ userId }) {
       <div className="spacer"></div>
       <div className="containerOuter">
         <div className="container">
-          <div className="form-container">
-            <p className="discover">Discover your style</p>
-            <h3 className="fashion">Art</h3>
+          <div className={`form-container ${formSize}`}>
+            <p className="discover">Find the perfect fit</p>
             <hr />
             <div className="discoverContainer">
               <label htmlFor="promptType">Select Prompt Type: </label>
@@ -338,6 +355,7 @@ function DiscoverPrompt({ userId }) {
               </form>
               <hr />
             </div>
+            <div></div>
             <SurpriseMe
               onSurprise={handleSurprise}
               handleButtonClick={handleButtonClick}

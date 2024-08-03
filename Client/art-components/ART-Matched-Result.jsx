@@ -9,7 +9,8 @@ function MatchedArtResult({ image, currentImageUrl, currentPrompt, userId }) {
   const [fill, setFill] = useState('currentColor');
   const [path, setPath] = useState(emptyStarPath);
 
-    console.log(`Rendering image: ${image.name} with URL: ${image.contentUrl}`);
+  console.log(`Rendering image: ${image.name} with URL: ${image.contentUrl}`);
+  console.log(`Current fill: ${fill}`);
 
   let itemName = image.name.length > 50 ? `${image.name.slice(0, 50)}...` : image.name;
 
@@ -25,15 +26,20 @@ function MatchedArtResult({ image, currentImageUrl, currentPrompt, userId }) {
         title: image.title,
         source: 'Bing'
       });
-      setFill('gold');
-      setPath(filledStarPath);
+      console.log('Added to favorites');
     } catch (error) {
       console.error('Error adding to favorites:', error);
+      // Revert the state if the network request fails
+      setFill('currentColor');
+      setPath(emptyStarPath);
     }
   };
 
   const handleClick = () => {
+    console.log('Star clicked');
     if (fill === 'currentColor') {
+      setFill('gold');
+      setPath(filledStarPath);
       handleAddToFavorites();
     } else {
       setFill('currentColor');
@@ -44,7 +50,7 @@ function MatchedArtResult({ image, currentImageUrl, currentPrompt, userId }) {
   return (
     <div className='matchedResult'>
       <a href={image.hostPageUrl} target="_blank" rel="noopener noreferrer">
-      <img src={image.contentUrl} alt={image.name} className="matchedImage" />
+        <img src={image.contentUrl} alt={image.name} className="matchedImage" />
         <br />
         {itemName}
       </a>

@@ -32,7 +32,7 @@ const ForYouFeed = () => {
 
   return (
     <Container>
-      <Typography variant="h2" gutterBottom sx={{ mt: 20 }}>
+      <Typography variant="h3" gutterBottom sx={{ mt: 20 }}>
         See what's trending
       </Typography>
       <div className="feed-container">

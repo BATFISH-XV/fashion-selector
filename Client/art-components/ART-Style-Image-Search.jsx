@@ -52,7 +52,7 @@ function ArtPromptTester({userId}) {
       <div className="containerOuter">
         <div className="container">
           <div className="form-container">
-            <p className="discover">Search your style</p>
+            <p className="discover">Build Style</p>
             <h3 className="fashion">Fashion, Art, Furniture</h3>
             <hr />
             <ArtPromptForm

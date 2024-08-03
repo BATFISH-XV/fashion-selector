@@ -79,7 +79,7 @@ const handleAvatarUpload = async () => {
     const updatedUser = await fetchUpdatedUserInfo();
     if (updatedUser) {
       login(updatedUser, session);
-      setAvatarUrl(updatedUser.avatar_url); 
+      setAvatar(updatedUser.avatar_url); 
 
     }
   } catch (error) {

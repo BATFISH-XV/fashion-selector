@@ -65,7 +65,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="urban">Urban</option>
             <option value="fantasy">Fantasy</option>
           </select>
-          <SpeechRecognition key="interests" formId="item" setter={setInterests} />
+          {/* <SpeechRecognition key="interests" formId="item" setter={setInterests} /> */}
         </label>
       </div>
       
@@ -80,7 +80,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="vibrant">Vibrant</option>
             <option value="pastel">Pastel</option>
           </select>
-          <SpeechRecognition key="colorPalette" formId="item" setter={setColorPalette} />
+          {/* <SpeechRecognition key="colorPalette" formId="item" setter={setColorPalette} /> */}
         </label>
       </div>
       
@@ -95,7 +95,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="kitchen">Kitchen</option>
             <option value="hallway">Hallway</option>
           </select>
-          <SpeechRecognition key="location" formId="color" setter={setLocation} />
+          {/* <SpeechRecognition key="location" formId="color" setter={setLocation} /> */}
         </label>
       </div>
 
@@ -109,7 +109,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="sketch">Sketch</option>
             <option value="digital">Digital</option>
           </select>
-          <SpeechRecognition key="medium" formId="color" setter={setMedium} />
+          {/* <SpeechRecognition key="medium" formId="color" setter={setMedium} /> */}
         </label>
       </div>
 
@@ -124,7 +124,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="animals">Animals</option>
             <option value="fantasy">Fantasy</option>
           </select>
-          <SpeechRecognition key="preferredTopics" formId="color" setter={setPreferredTopics} />
+          {/* <SpeechRecognition key="preferredTopics" formId="color" setter={setPreferredTopics} /> */}
         </label>
       </div>
 
@@ -138,7 +138,7 @@ function ArtPromptForm({ onImageGenerated, setLoading, setCurrentImageUrl, curre
             <option value="politics">Politics</option>
             <option value="religion">Religion</option>
           </select>
-          <SpeechRecognition key="excludedTopics" formId="color" setter={setExcludedTopics} />
+          {/* <SpeechRecognition key="excludedTopics" formId="color" setter={setExcludedTopics} /> */}
         </label>
       </div>
 

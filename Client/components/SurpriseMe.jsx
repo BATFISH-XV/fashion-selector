@@ -1,7 +1,5 @@
-
 import React, { useState } from 'react';
-import { Button, ButtonGroup } from '@mui/material';
-import '../styles/SurpriseMe.css';  //
+import '../styles/SurpriseMe.css';
 
 function SurpriseMe({ onSurprise, handleButtonClick, activeButtons }) {
   const [selectedGenders, setSelectedGenders] = useState([]);
@@ -65,19 +63,13 @@ function SurpriseMe({ onSurprise, handleButtonClick, activeButtons }) {
       <div className="gender-buttons">
         <button
           className={selectedGenders.includes('male') ? 'active' : ''}
-          onClick={() => {
-            handleGenderToggle('male');
-            handleButtonClick('male');
-          }}
+          onClick={() => handleGenderToggle('male')}
         >
           Male
         </button>
         <button
           className={selectedGenders.includes('female') ? 'active' : ''}
-          onClick={() => {
-            handleGenderToggle('female');
-            handleButtonClick('female');
-          }}
+          onClick={() => handleGenderToggle('female')}
         >
           Female
         </button>

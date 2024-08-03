@@ -1,7 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useAuth } from './AuthContext'; // Adjust the path as needed
+import { useAuth } from './AuthContext';
+
 
 const style = {
   position: 'fixed',
@@ -33,3 +34,4 @@ const AuthProviderDebugger = () => {
 };
 
 export default AuthProviderDebugger;
+ 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 function SpeechRecognition({ formId, setter }) {
   const [buttonLabel, setButtonLabel] = useState('Voice input');
   const [transcript, setTranscript] = useState('');
@@ -9,7 +10,7 @@ function SpeechRecognition({ formId, setter }) {
 
   recognition.onstart = () => {
     setButtonLabel('Listening...');
-};
+  };
 
   recognition.onresult = (event) => {
     const transcriptVar = event.results[0][0].transcript;
@@ -23,15 +24,15 @@ function SpeechRecognition({ formId, setter }) {
 
   return (
     <>
-    <button 
-      className='speechButton'
-      id={formId}
-      onClick={() => {recognition.start()}}
+      <button 
+        className='speechButton'
+        id={formId}
+        onClick={() => { recognition.start() }}
       >
-      {buttonLabel}
-    </button>
+        {buttonLabel}
+      </button>
     </>
-  )
+  );
 };
 
 export default SpeechRecognition;

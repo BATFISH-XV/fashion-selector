@@ -1,0 +1,88 @@
+
+IMages-- > contains the ai - gen images and their prompt info
+
+
+matches - contaioms the matched images--each match ref and AI gen image through
+imaged_id
+
+favorites-- > contains that users favorites--each fav ref matches a match id and
+a user id
+
+CONNECTING:
+Matches table entries have a foreign key image_url that ref' the iamges table 
+    (each entry in the matches table is linked to one ai gen image)
+    since there can be multipel rows int he match table with the same image_id,
+    creates a one - to0 - many relationship btwn ai - gen and the actual bing match
+        
+
+
+one match to multiple favorites 
+    favorites table incldues foregin key match id that ref the matches table--each
+    entry entry in the favorites table ios linked to 1 match
+b / c tehre can be mulilepl rows in the favorrites table with the same match id, makes a one
+to many
+
+ 1Users Table
+
+```sql
+CREATE TABLE Users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+
+ImageSearch
+    ```sql
+CREATE TABLE Images (
+    image_id SERIAL PRIMARY KEY,
+    prompt TEXT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    is_generated BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+//store information about the AI generated image - each ai gen image has unique entry
+
+#Matches 
+- `match_id`: A unique identifier for each match. It is automatically incremented.
+- `image_id`: A foreign key reference to the `Images` table, linking the match to the corresponding AI-generated image.
+- `photo_url`: The URL of the matched image.
+- `url`: The URL of the webpage where the matched image is found.
+- `name`: The name or short description of the matched image.
+- `title`: An additional title or description for the matched image.
+- `source`: A string indicating the source of the matched image (e.g., 'Bing').
+- `created_at`: The timestamp of when the match was found. It defaults to the current timestamp when a new record is created.
+
+    
+    
+```sql
+CREATE TABLE Matches (
+    match_id SERIAL PRIMARY KEY,
+    image_id INT NOT NULL REFERENCES AI_Images(image_id),
+    photo_url VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
+    source VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+FAVORITE 
+
+```sql
+CREATE TABLE Favorites (
+    favorite_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES Users(user_id),
+    match_id INT NOT NULL REFERENCES Matches(match_id),
+    favorited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Store information about ht efavorites user have marked;
+such that each favorite is liked to a USER and a MATCH

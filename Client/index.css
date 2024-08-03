@@ -1,38 +1,21 @@
 body {
+  height: 100%;
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #2C6C8F;
+  background: linear-gradient(#2D6C8F, #999999);
   color: #999999;
+  background-attachment: fixed;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #1976D2;
   padding: 10px 20px;
-  position: fixed; /* Fixed position so nav bar stays @ top of page */
+  position: fixed;
   width: 100%;
   z-index: 1000;
-}
-
-.navbar-brand {
-  color: #fff;
-  font-size: 1.5em;
-}
-
-.navbar-buttons .nav-button {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 20px;
-  padding: 10px 20px;
-  background-color: #444;
-  border-radius: 5px;
-}
-
-.navbar-buttons .nav-button:hover {
-  background-color: #555;
 }
 
 .homepage {
@@ -44,21 +27,33 @@ body {
   margin: 20px 0;
 }
 
-.search-page {
-  text-align: center;
-  padding: 100px 20px 20px; /* Added top padding to avoid being covered by navbar */
+.generatedImg {
+  max-width: 400px; 
+  max-height: 400px;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.generatedImg {
-  max-width: 100%;
-  height: auto;
+.imgBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.imgBtnContainer button {
+  margin: 0 10px;
+}
+
+.dallEProgress {
+  margin-top: 10px;
 }
 
 .login-status {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #333;
+  background-color: #1976D2;
   padding: 5px;
   text-align: center;
   z-index: 1000;
@@ -71,87 +66,196 @@ body {
   margin-top: 20px;
 }
 
-/* New styles for the updated layout */
+.spacer {
+  height: 85px;
+}
+
+.spacerBottom {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+}
+
+.containerOuter {
+  display: flex;
+  height: 83vh;
+}
+
 .container {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 10px;
 }
 
-.form-container {
+.form-container, .form-container2 {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 15px; /* Reduced padding to fit content */
+  width: 300px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-container form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
+.form-group {
   width: 100%;
-  max-width: 400px;
+  margin-bottom: 10px; /* Reduced margin to save space */
 }
 
-.form-container label {
+label {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.form-container input {
+input, select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   box-sizing: border-box;
 }
 
-.form-container button {
-  grid-column: span 2;
+button.generateImage {
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 10px; /* Adjusted margin to fit inside the box */
+  cursor: pointer;
+}
+
+.rightContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discoverContainer {
+  padding: 10px;
+  width: 260px;
+  max-height: 400px;
+}
+
+.discover {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.fashion {
+  margin-left: 10px;
+  margin-top: 0;
+  color: black;
+  font-size: 14px;
+  margin-bottom: 10px; /* Reduced margin to save space */
 }
 
 .generated-image {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.bingContainer {
+  flex-grow: 1;
+  display: flex;
+  width: 95%;
+  justify-content: center;
 }
 
 .image-results {
-  max-height: 600px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  max-width: 80vw;
   padding: 10px;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f9f9f9;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .image-results img {
-  width: 100%;
   height: 100px;
-  object-fit: cover;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.speechButton {
-  margin-left: 10px;
-  padding: 8px;
+.searchResults {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.matchedImage {
+  max-width: 150%;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.matchedResult {
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  text-align: center;
+  margin: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+
+.image-link {
+  display: inline-block;
+}
+
+.star {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  cursor: pointer;
 }
 
 button {
   margin: 5px;
+  padding: 5px;
+  height: 30px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Custom scroll bar styles */
+button.active {
+  background-color: #000;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.speechButton {
+  margin-right: 0;
+  text-align: center;
+  font-size: x-small;
+  height: 22px;
+}
+
 .image-results::-webkit-scrollbar {
   width: 8px;
 }
@@ -170,10 +274,48 @@ button {
   background: #555;
 }
 
-/* Adding centering for the the CircularProgress component */
+a:link,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+  color: #2D6C8F;
+}
+
 .center-loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem; 
+  margin-top: 1rem;
+}
+
+.surprise-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.surprise-button:hover {
+  background-color: #333;
+}
+
+.gender-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.gender-toggle label {
+  margin-right: 10px;
+  font-size: 16px;
 }

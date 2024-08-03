@@ -20,26 +20,11 @@ const Routes = () => {
     <Router>
       <ResponsiveAppBar />
       <div className="main-content">
-<<<<<<< HEAD
-        <LoginStatus />
-=======
         {/* <LoginStatus /> */}
->>>>>>> 7626bbaaa6a91da2a557d1015aaa65ec560aa5c6
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-<<<<<<< HEAD
-          <Route path="/search" component={ImageSearch} />
-          <Route path="/about" component={About} />
-          <Route path="/myAccount" component={MyAccount} />
-          <Route path="/favorites" component={Favorites} />
-          <Route path="/feed" component={ForYouFeed} />
-          <Route path="/prompt-tester" component={PromptTester} />
-        </Switch>
-      </div>
-
-=======
           <Route path="/search" render={(props) => <StyleImageSearchPage {...props} userId={user?.id} />} />
           <Route path="/about" component={About} />
           <Route path="/myAccount" component={MyAccount} />
@@ -50,7 +35,6 @@ const Routes = () => {
           <Route path="/art" render={(props) => <ArtPromptTester {...props} userId={user?.id} />} />
         </Switch>
       </div>
->>>>>>> 7626bbaaa6a91da2a557d1015aaa65ec560aa5c6
     </Router>
   );
 };

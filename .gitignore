@@ -1,4 +1,5 @@
 node_modules/
+<<<<<<< HEAD
 package-lock.json
 .env
 
@@ -7,3 +8,7 @@ package-lock.json
 User: stabb-rabbit
 Password: abc123
 Base URL: http://localhost:8080/iteration-project
+=======
+.env
+.DS_Store
+>>>>>>> 7626bbaaa6a91da2a557d1015aaa65ec560aa5c6
